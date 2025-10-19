@@ -22,7 +22,7 @@ const Hero = () => {
           <div className="mb-8 animate-fade-in-up">
             <div className="w-32 h-32 mx-auto rounded-full bg-gradient-to-r from-blue-500 to-emerald-500 p-1">
               <div className="w-full h-full rounded-full bg-gray-200 flex items-center justify-center text-4xl font-bold text-gray-700">
-                <img src="pfp.jpg" alt="Profile" className="w-full h-full rounded-full object-cover object-top" />
+                <img src="./src/components/assets/pfp.jpg" alt="Profile" className="w-full h-full rounded-full object-cover object-top" />
               </div>
             </div>
           </div>
