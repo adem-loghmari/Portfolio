@@ -3,26 +3,24 @@ import { Calendar, MapPin, ChevronRight } from "lucide-react";
 const Experience = () => {
   const experiences = [
     {
-      title: "Full Stack Developer",
-      company: "Agogo E-commerce",
-      location: "Remote",
-      period: "2023 - 2024",
+      title: "Full-Stack Developer Intern",
+      company: "VIEWS Digital Agency",
+      location: "On-site, Sousse, Tunisia",
+      period: "2025",
       type: "Full-time",
       description:
         "Maintained and developed features for Agogo’s e-commerce platform, overseeing both frontend and backend tasks and ensuring stable deployment throughout the 9-month period.",
       achievements: [
-        "Managed full deployment and DevOps lifecycle of the platform",
-        "Optimized backend performance for faster product loading",
-        "Improved UI responsiveness and shopping cart logic",
-        "Maintained high uptime and handled production bug fixes",
+        "Designed and built a modern admin dashboard for an internal e-commerce management platform.",
+        "mplemented analytics, user management, and order tracking features with a responsive UI",
+        "Developed backend REST APIs with Node.js/Express and optimized MongoDB queries",
+        "Integrated authentication, real-time updates, and role-based access control",
       ],
       technologies: [
         "React",
         "Node.js",
+        "Express.js",
         "MongoDB",
-        "TypeScript",
-        "Docker",
-        "AWS",
       ],
     },
     {
