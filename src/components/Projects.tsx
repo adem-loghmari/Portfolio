@@ -6,11 +6,11 @@ const Projects = () => {
     {
       title: "E-Commerce Platform",
       description:
-        "Full-featured e-commerce solution with user authentication, payment integration, and admin dashboard. Built with React, Node.js, MongoDB, and Stripe API. With focus on backend over frontend.",
+        "Full-featured e-commerce solution with user authentication, payment integration, and admin dashboard. Built with React, Node.js, MongoDB. With focus on backend over frontend.",
       image: "src/components/assets/e-comerce.png",
       technologies: ["React", "Node.js", "MongoDB", "Express", "chart.js", "JWT"],
       githubUrl: "https://github.com/adem-loghmari/E-commerce",
-      liveUrl: "#",
+      liveUrl: "https://smartshop-lqyf.onrender.com",
       featured: true,
     },
     {
