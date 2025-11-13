@@ -22,7 +22,7 @@ const Hero = () => {
           <div className="mb-8 animate-fade-in-up">
             <div className="w-32 h-32 mx-auto rounded-full bg-gradient-to-r from-blue-500 to-emerald-500 p-1">
               <div className="w-full h-full rounded-full bg-gray-200 flex items-center justify-center text-4xl font-bold text-gray-700">
-                <img src={"src/components/assets/pfp.png"} alt="Profile" className="w-full h-full rounded-full object-cover object-top" />
+                <img src="https://scontent.fnbe1-2.fna.fbcdn.net/v/t39.30808-6/495207432_2933328666846940_8608603441642970140_n.jpg?_nc_cat=101&cb2=99be929b-bd9a46d7&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=yRNXQlVEkYsQ7kNvwEEkRjX&_nc_oc=Adnxfg--7LBYXzhNr7hTkMEI2xJ-lMX36Aeg93D11K6AGHs3ru8sS6By7ZoDtqo2Lic&_nc_zt=23&_nc_ht=scontent.fnbe1-2.fna&_nc_gid=YUzA8S8-4QlX0b7yu0VrYg&oh=00_Afj9PneCArTPaqUE40VSSlUScBN1lu4p0FRm64YVdTOqfw&oe=691BC4BE" alt="Profile" className="w-full h-full rounded-full object-cover object-top" />
               </div>
             </div>
           </div>
