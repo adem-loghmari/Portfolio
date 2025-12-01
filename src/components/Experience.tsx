@@ -14,7 +14,7 @@ const Experience = () => {
         "Designed and built a modern admin dashboard for an internal e-commerce management platform.",
         "mplemented analytics, user management, and order tracking features with a responsive UI",
         "Developed backend REST APIs with Node.js/Express and optimized MongoDB queries",
-        "Integrated authentication, real-time updates, and role-based access control",
+        "Integrated authentication, real-time updates, and role-based access controlgimg",
       ],
       technologies: [
         "React",

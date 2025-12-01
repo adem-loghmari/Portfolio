@@ -1,5 +1,6 @@
 import React from 'react';
 import { Github, Linkedin, Mail, Download, ArrowDown, Link } from 'lucide-react';
+import resume from './assets/Adam_Loghmari_Resume.pdf';
 
 const Hero = () => {
   const scrollToSection = (sectionId: string) => {
@@ -18,14 +19,6 @@ const Hero = () => {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
         <div className="max-w-4xl mx-auto">
-          {/* Profile Image */}
-          <div className="mb-8 animate-fade-in-up">
-            <div className="w-32 h-32 mx-auto rounded-full bg-gradient-to-r from-blue-500 to-emerald-500 p-1">
-              <div className="w-full h-full rounded-full bg-gray-200 flex items-center justify-center text-4xl font-bold text-gray-700">
-                <img src="https://scontent.fnbe1-2.fna.fbcdn.net/v/t39.30808-6/495207432_2933328666846940_8608603441642970140_n.jpg?_nc_cat=101&cb2=99be929b-bd9a46d7&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=yRNXQlVEkYsQ7kNvwEEkRjX&_nc_oc=Adnxfg--7LBYXzhNr7hTkMEI2xJ-lMX36Aeg93D11K6AGHs3ru8sS6By7ZoDtqo2Lic&_nc_zt=23&_nc_ht=scontent.fnbe1-2.fna&_nc_gid=YUzA8S8-4QlX0b7yu0VrYg&oh=00_Afj9PneCArTPaqUE40VSSlUScBN1lu4p0FRm64YVdTOqfw&oe=691BC4BE" alt="Profile" className="w-full h-full rounded-full object-cover object-top" />
-              </div>
-            </div>
-          </div>
 
           {/* Main Heading */}
           <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold mb-6 animate-fade-in-up animation-delay-200">
@@ -62,10 +55,16 @@ const Hero = () => {
             >
               Explore My Projects
             </button>
-            <button onClick={()=>window.open('/resume.pdf', '_blank')} className="px-8 py-4 bg-transparent border-2 border-white/30 hover:border-white text-white rounded-full font-semibold transition-all transform hover:scale-105 flex items-center justify-center gap-2">
+            <a
+              href={resume}
+              download="Adam_Loghmari_Resume.pdf"
+              target="_blank"
+              rel="noreferrer"
+              className="px-8 py-4 bg-transparent border-2 border-white/30 hover:border-white text-white rounded-full font-semibold transition-all transform hover:scale-105 flex items-center justify-center gap-2"
+            >
               <Download size={20} />
               Download Resume
-            </button>
+            </a>
           </div>
 
           {/* Social Links */}
