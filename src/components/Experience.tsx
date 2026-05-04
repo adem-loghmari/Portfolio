@@ -3,6 +3,31 @@ import { Calendar, MapPin, ChevronRight } from "lucide-react";
 const Experience = () => {
   const experiences = [
     {
+      title: "Full-Stack Developer Intern (PFE)",
+      company: "United Systema",
+      location: "On-site, Sousse, Tunisia",
+      period: "February 2026 - Present",
+      type: "Internship",
+      description:
+        "Building GetSeat from scratch—a complete event platform with an interactive drag-and-drop seat map editor, real-time seat locking via WebSockets, event management dashboard, and an embeddable iframe SDK for third-party integration.",
+      achievements: [
+        "Architected and developed a full-stack event platform with real-time features",
+        "Built an interactive drag-and-drop seat map editor",
+        "Implemented WebSocket-based real-time seat locking system",
+        "Developed REST APIs, event management dashboard, and ticketing system",
+        "Created an embeddable third-party iframe SDK with comprehensive documentation",
+        "Set up CI/CD pipeline on DirectAdmin for seamless deployment",
+      ],
+      technologies: [
+        "Next.js",
+        "Laravel",
+        "PHP",
+        "WebSockets",
+        "REST API",
+        "DirectAdmin",
+      ],
+    },
+    {
       title: "Full-Stack Developer Intern",
       company: "VIEWS Digital Agency",
       location: "On-site, Sousse, Tunisia",

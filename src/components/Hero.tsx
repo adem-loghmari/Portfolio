@@ -21,18 +21,17 @@ const Hero = () => {
         <div className="max-w-4xl mx-auto">
 
           {/* Main Heading */}
-          <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold mb-6 animate-fade-in-up animation-delay-200">
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-emerald-400">
-              Full Stack
-            </span>
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-4 animate-fade-in-up animation-delay-200">
+            <span className="text-white">Full-Stack Developer</span>
             <br />
-            <span className="text-white">MERN Developer</span>
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-emerald-400">
+              React · Next.js · Node.js · Laravel
+            </span>
           </h1>
 
           {/* Subtitle */}
           <p className="text-xl sm:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto animate-fade-in-up animation-delay-400">
-            Crafting scalable web applications with modern technologies. 
-            Passionate about clean code, user experience, and innovative solutions.
+            Open to remote work & relocation
           </p>
 
           {/* Tech Stack */}

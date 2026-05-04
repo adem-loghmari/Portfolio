@@ -4,11 +4,36 @@ import { ExternalLink, Github, Play } from "lucide-react";
 const Projects = () => {
   const projects = [
     {
+      title: "GetSeat — Seat Mapping & Event Ticketing Platform",
+      description:
+        "Built from scratch during my time at United Systema. A full event platform featuring an interactive drag-and-drop seat map editor, real-time seat locking using WebSockets, an event management dashboard, a reservation and ticketing system, and an embeddable third-party iframe SDK that lets any platform integrate seat selection — fully documented. Deployed on DirectAdmin with a custom CI/CD pipeline for seamless updates. Currently in development, with a public launch planned in June 2026.",
+      image: "src/components/assets/getseat.png",
+      technologies: [
+        "Next.js",
+        "Laravel",
+        "PHP",
+        "WebSockets",
+        "REST API",
+        "DirectAdmin",
+      ],
+      status: "In Development",
+      githubUrl: "",
+      liveUrl: "https://getseat.dev",
+      featured: true,
+    },
+    {
       title: "E-Commerce Platform",
       description:
         "Full-featured e-commerce solution with user authentication, payment integration, and admin dashboard. Built with React, Node.js, MongoDB. With focus on backend over frontend.",
       image: "src/components/assets/e-comerce.png",
-      technologies: ["React", "Node.js", "MongoDB", "Express", "chart.js", "JWT"],
+      technologies: [
+        "React",
+        "Node.js",
+        "MongoDB",
+        "Express",
+        "chart.js",
+        "JWT",
+      ],
       githubUrl: "https://github.com/adem-loghmari/E-commerce",
       liveUrl: "https://smartshop-lqyf.onrender.com",
       featured: true,
@@ -18,7 +43,7 @@ const Projects = () => {
       description:
         "An AI-powered chatbot designed to assist patients and healthcare professionals with information and guidance related to liver cancer. Utilizes large language models to provide accurate, empathetic, and up-to-date responses.",
       image: "src/components/assets/pfa.png",
-      technologies: ["React", "Node.js", "Python", "SapBert","Mistral"],
+      technologies: ["React", "Node.js", "Python", "SapBert", "Mistral"],
       githubUrl: "https://github.com/adem-loghmari/pfa-project",
       liveUrl: "#",
       featured: true,
@@ -54,14 +79,23 @@ const Projects = () => {
                     alt={project.title}
                     className="w-full h-64 object-contain group-hover:scale-105 transition-transform duration-300"
                   />
+                  {project.status && (
+                    <div className="absolute top-4 left-4">
+                      <span className="px-3 py-1 bg-blue-600 text-white text-sm font-semibold rounded-full">
+                        {project.status}
+                      </span>
+                    </div>
+                  )}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   <div className="absolute top-4 right-4 flex space-x-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <a
-                      href={project.githubUrl}
-                      className="p-2 bg-white/90 rounded-full hover:bg-white transition-colors"
-                    >
-                      <Github size={20} className="text-gray-700" />
-                    </a>
+                    {project.githubUrl && (
+                      <a
+                        href={project.githubUrl}
+                        className="p-2 bg-white/90 rounded-full hover:bg-white transition-colors"
+                      >
+                        <Github size={20} className="text-gray-700" />
+                      </a>
+                    )}
                     <a
                       href={project.liveUrl}
                       className="p-2 bg-white/90 rounded-full hover:bg-white transition-colors"
@@ -98,13 +132,15 @@ const Projects = () => {
                       <Play size={16} />
                       <span>Live Demo</span>
                     </a>
-                    <a
-                      href={project.githubUrl}
-                      className="flex items-center space-x-2 px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
-                    >
-                      <Github size={16} />
-                      <span>Source Code</span>
-                    </a>
+                    {project.githubUrl && (
+                      <a
+                        href={project.githubUrl}
+                        className="flex items-center space-x-2 px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
+                      >
+                        <Github size={16} />
+                        <span>Source Code</span>
+                      </a>
+                    )}
                   </div>
                 </div>
               </div>

@@ -1,6 +1,11 @@
 import React, { useState } from 'react';
 import { Mail, Phone, MapPin, Send, Github, Linkedin } from 'lucide-react';
 import emailjs from 'emailjs-com';
+import Swal from 'sweetalert2';
+
+const EMAILJS_SERVICE_ID = import.meta.env.VITE_SERVICE_ID;
+const EMAILJS_TEMPLATE_ID = import.meta.env.VITE_TEMPLATE_ID;
+const EMAILJS_PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -16,20 +21,30 @@ const Contact = () => {
     setIsSubmitting(true);
     try {
       await emailjs.send(
-        'service_dclgn3o',
-        'template_g5xk94s',
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
         {
           title: formData.subject,
           name: formData.name,
           email: formData.email,
           message: formData.message,
         },
-        'mR8keafoOrRHC05lB'
+        EMAILJS_PUBLIC_KEY
       );
-      alert('Message sent successfully!');
+      Swal.fire({
+        icon: 'success',
+        title: 'Success!',
+        text: 'Message sent successfully!',
+        confirmButtonColor: '#2563eb',
+      });
       setFormData({ name: '', email: '', subject: '', message: '' });
     } catch (error) {
-      alert('Failed to send message.');
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops!',
+        text: 'Failed to send message. Please try again.',
+        confirmButtonColor: '#2563eb',
+      });
     }
     setIsSubmitting(false);
   };
@@ -59,9 +74,7 @@ const Contact = () => {
             <div>
               <h3 className="text-2xl font-bold mb-6">Get In Touch</h3>
               <p className="text-gray-300 mb-8 leading-relaxed">
-                I'm always interested in new opportunities and exciting projects. 
-                Whether you're a company looking to hire, or you're a fellow developer 
-                who'd like to connect, don't hesitate to reach out.
+                Open to remote roles, freelance projects, and relocation. Let's build something.
               </p>
             </div>
 
