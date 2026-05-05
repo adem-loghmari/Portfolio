@@ -1,32 +1,19 @@
-import React from "react";
 import { Code2, Database, Server, Palette } from "lucide-react";
+import SectionHeader from "./ui/SectionHeader";
+import SkillCard from "./ui/SkillCard";
 
 const About = () => {
   const skills = [
     {
       category: "Frontend",
       icon: <Palette className="w-6 h-6" />,
-      technologies: [
-        "React.js",
-        "TypeScript",
-        "Next.js",
-        "Tailwind CSS",
-        "Redux",
-        "HTML5/CSS3",
-      ],
+      technologies: ["React.js", "TypeScript", "Next.js", "Tailwind CSS", "Redux", "HTML5/CSS3"],
       color: "from-blue-500 to-cyan-500",
     },
     {
       category: "Backend",
       icon: <Server className="w-6 h-6" />,
-      technologies: [
-        "Node.js",
-        "Express.js",
-        "laravel",
-        "Symphony",
-        "RESTful APIs",
-        "PostgreSQL",
-      ],
+      technologies: ["Node.js", "Express.js", "Laravel", "Symfony", "RESTful APIs", "PostgreSQL"],
       color: "from-emerald-500 to-teal-500",
     },
     {
@@ -38,16 +25,7 @@ const About = () => {
     {
       category: "Tools & DevOps",
       icon: <Code2 className="w-6 h-6" />,
-      technologies: [
-        "Git",
-        "GitHub Actions",
-        "DirectAdmin",
-        "Docker",
-        "AWS",
-        "Jest",
-        "Webpack",
-        "CI/CD",
-      ],
+      technologies: ["Git", "GitHub Actions", "DirectAdmin", "Docker", "AWS", "Jest", "Webpack", "CI/CD"],
       color: "from-orange-500 to-red-500",
     },
   ];
@@ -55,79 +33,30 @@ const About = () => {
   return (
     <section id="about" className="py-20 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">About Me</h2>
-          <div className="w-20 h-1 bg-gradient-to-r from-blue-600 to-emerald-600 mx-auto mb-8"></div>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            I'm a full-stack developer specializing in React, Next.js, Node.js,
-            and Laravel. I build real products — not just side projects. During
-            my current internship I built GetSeat from the ground up: a complete
-            event platform with a seat map editor, real-time seat locking, a
-            ticketing system, and an SDK that lets any platform embed seat
-            selection via iframe. I'm finishing my software engineering degree
-            and actively looking for remote full-stack roles or freelance
-            opportunities. I work hard, ship real things, and communicate
-            clearly in English.
-          </p>
-        </div>
+        <SectionHeader
+          title="About Me"
+          description="I'm a full-stack developer specializing in React, Next.js, Node.js, and Laravel. I build real products — not just side projects. During my current internship I built GetSeat from the ground up: a complete event platform with a seat map editor, real-time seat locking, a ticketing system, and an SDK that lets any platform embed seat selection via iframe. I'm finishing my software engineering degree and actively looking for remote full-stack roles or freelance opportunities. I work hard, ship real things, and communicate clearly in English."
+        />
 
         <div className="grid lg:grid-cols-2 gap-16">
-          {/* Personal Story */}
           <div className="space-y-6">
             <h3 className="text-2xl font-bold text-gray-900">My Journey</h3>
             <div className="space-y-4 text-gray-600 leading-relaxed">
               <p>
-                I discovered coding back in high school — and it clicked
-                instantly. What started as a simple curiosity quickly became a
-                passion for solving complex problems through code. I loved the
-                logic, the creativity, and the feeling of building something
-                from nothing.
+                I discovered coding back in high school — and it clicked instantly. What started as a simple curiosity quickly became a passion for solving complex problems through code.
               </p>
               <p>
-                After completing a full stack development course early on, I
-                chose to pursue two years of preparatory engineering school to
-                strengthen my foundations. While those years temporarily pulled
-                me away from web development, they sharpened my discipline and
-                deepened my technical thinking.
+                After completing a full-stack development course early on, I chose to pursue two years of preparatory engineering school to strengthen my foundations. Those years sharpened my discipline and deepened my technical thinking.
               </p>
               <p>
-                Once I returned to coding, I dove back in with renewed energy. I
-                explored new technologies, built dozens of projects, and
-                embraced a more refined approach to writing clean, efficient,
-                and scalable code. Since then, I’ve been all-in — constantly
-                learning, building, and sharing knowledge along the way.
+                Once I returned to coding, I dove back in with renewed energy. I explored new technologies, built dozens of projects, and embraced a more refined approach to writing clean, efficient, and scalable code.
               </p>
             </div>
           </div>
 
-          {/* Skills Grid */}
           <div className="grid gap-6">
-            {skills.map((skill, index) => (
-              <div
-                key={skill.category}
-                className="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow"
-              >
-                <div className="flex items-center mb-4">
-                  <div
-                    className={`p-3 rounded-lg bg-gradient-to-r ${skill.color} text-white mr-4`}
-                  >
-                    {skill.icon}
-                  </div>
-                  <h4 className="text-xl font-semibold text-gray-900">
-                    {skill.category}
-                  </h4>
-                </div>
-                <div className="flex flex-wrap gap-2">
-                  {skill.technologies.map((tech) => (
-                    <span
-                      key={tech}
-                      className="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm font-medium hover:bg-gray-200 transition-colors"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-              </div>
+            {skills.map((skill) => (
+              <SkillCard key={skill.category} skill={skill} />
             ))}
           </div>
         </div>

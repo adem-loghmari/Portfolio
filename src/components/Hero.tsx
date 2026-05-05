@@ -1,14 +1,8 @@
-import React from 'react';
-import { Github, Linkedin, Mail, Download, ArrowDown, Link } from 'lucide-react';
+import { Github, Linkedin, Download, ArrowDown } from 'lucide-react';
 import resume from './assets/Adam_Loghmari_Resume.pdf';
+import { scrollToSection } from '../lib/scroll';
 
 const Hero = () => {
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
 
   return (
     <section className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900 text-white relative overflow-hidden pt-16 ">
