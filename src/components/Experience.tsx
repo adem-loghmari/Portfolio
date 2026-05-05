@@ -1,6 +1,20 @@
-import { Calendar, MapPin, ChevronRight } from "lucide-react";
+import { Calendar, MapPin, ChevronRight, X, ChevronLeft, Image } from "lucide-react";
+import { useState } from "react";
+import getseat1 from "./assets/getseat-1.png";
+import getseat2 from "./assets/getseat-2.png";
+import getseat3 from "./assets/getseat-3.png";
+import getseat4 from "./assets/getseat-4.jpeg";
+import getseat5 from "./assets/getseat-5.png";
+import ecommerce1 from "./assets/e-commerce-1.png";
+import ecommerce2 from "./assets/e-commerce-2.png";
+import ecommerce3 from "./assets/e-commerce-3.png";
 
 const Experience = () => {
+  const [selectedExperience, setSelectedExperience] = useState<number | null>(
+    null
+  );
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
   const experiences = [
     {
       title: "Full-Stack Developer Intern (PFE)",
@@ -26,6 +40,7 @@ const Experience = () => {
         "REST API",
         "DirectAdmin",
       ],
+      images: [getseat1, getseat2, getseat3, getseat4, getseat5],
     },
     {
       title: "Full-Stack Developer Intern",
@@ -47,6 +62,7 @@ const Experience = () => {
         "Express.js",
         "MongoDB",
       ],
+      images: [ecommerce1, ecommerce2, ecommerce3],
     },
     {
       title: "AI Engineering Intern",
@@ -71,6 +87,7 @@ const Experience = () => {
         "MongoDB",
         "cv2",
       ],
+      images: [],
     },
     {
       title: "Software Engineering Intern",
@@ -92,6 +109,7 @@ const Experience = () => {
         "Vue.js",
         "MongoDB",
       ],
+      images: [],
     },
   ];
 
@@ -127,11 +145,29 @@ const Experience = () => {
 
                 {/* Content Card */}
                 <div
-                  className={`ml-12 md:ml-0 flex-1 ${
+                  className={`ml-12 md:ml-0 flex-1 group ${
                     index % 2 === 0 ? "md:pr-12" : "md:pl-12"
                   }`}
                 >
-                  <div className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 p-8">
+                  <div
+                    onClick={() => {
+                      if (exp.images.length > 0) {
+                        setSelectedExperience(index);
+                        setCurrentImageIndex(0);
+                      }
+                    }}
+                    className={`bg-white rounded-2xl shadow-lg transition-all duration-300 p-8 relative ${
+                      exp.images.length > 0
+                        ? "cursor-pointer hover:shadow-2xl hover:scale-105"
+                        : "hover:shadow-xl"
+                    }`}
+                  >
+                    {/* Image Badge */}
+                    {exp.images.length > 0 && (
+                      <div className="absolute top-4 right-4 bg-blue-600 text-white rounded-full p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-lg">
+                        <Image size={20} />
+                      </div>
+                    )}
                     <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4">
                       <div>
                         <h3 className="text-2xl font-bold text-gray-900 mb-1">
@@ -219,6 +255,141 @@ const Experience = () => {
             </p>
           </div>
         </div>
+
+        {/* Image Modal */}
+        {selectedExperience !== null && experiences[selectedExperience].images.length > 0 && (
+          <div
+            className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4"
+            onClick={() => setSelectedExperience(null)}
+          >
+            <div
+              className="bg-white rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-auto relative"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Close Button */}
+              <button
+                onClick={() => setSelectedExperience(null)}
+                className="absolute top-4 right-4 z-10 bg-white rounded-full p-2 hover:bg-gray-100 transition-colors shadow-lg"
+              >
+                <X size={24} className="text-gray-800" />
+              </button>
+
+              <div className="p-8">
+                {/* Title */}
+                <h2 className="text-3xl font-bold text-gray-900 mb-6">
+                  {experiences[selectedExperience].title}
+                </h2>
+
+                {/* Image Slider */}
+                <div className="relative bg-gray-100 rounded-xl overflow-hidden mb-6">
+                  <img
+                    src={experiences[selectedExperience].images[currentImageIndex]}
+                    alt={`${experiences[selectedExperience].title} - Image ${currentImageIndex + 1}`}
+                    className="w-full h-auto"
+                  />
+
+                  {/* Navigation Buttons */}
+                  {experiences[selectedExperience].images.length > 1 && (
+                    <>
+                      <button
+                        onClick={() => {
+                          setCurrentImageIndex((prev) =>
+                            prev === 0
+                              ? experiences[selectedExperience].images.length - 1
+                              : prev - 1
+                          );
+                        }}
+                        className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-80 hover:bg-opacity-100 rounded-full p-2 transition-all"
+                      >
+                        <ChevronLeft size={24} className="text-gray-800" />
+                      </button>
+
+                      <button
+                        onClick={() => {
+                          setCurrentImageIndex((prev) =>
+                            prev === experiences[selectedExperience].images.length - 1
+                              ? 0
+                              : prev + 1
+                          );
+                        }}
+                        className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-80 hover:bg-opacity-100 rounded-full p-2 transition-all"
+                      >
+                        <ChevronRight size={24} className="text-gray-800" />
+                      </button>
+                    </>
+                  )}
+                </div>
+
+                {/* Image Counter */}
+                {experiences[selectedExperience].images.length > 1 && (
+                  <div className="text-center text-sm text-gray-500 mb-6">
+                    Image {currentImageIndex + 1} of{" "}
+                    {experiences[selectedExperience].images.length}
+                  </div>
+                )}
+
+                {/* Image Dots */}
+                {experiences[selectedExperience].images.length > 1 && (
+                  <div className="flex justify-center gap-2 mb-6">
+                    {experiences[selectedExperience].images.map((_, idx) => (
+                      <button
+                        key={idx}
+                        onClick={() => setCurrentImageIndex(idx)}
+                        className={`w-2 h-2 rounded-full transition-colors ${
+                          idx === currentImageIndex
+                            ? "bg-blue-600"
+                            : "bg-gray-300 hover:bg-gray-400"
+                        }`}
+                      />
+                    ))}
+                  </div>
+                )}
+
+                {/* Description */}
+                <p className="text-gray-600 mb-6 leading-relaxed">
+                  {experiences[selectedExperience].description}
+                </p>
+
+                {/* Achievements */}
+                <div className="mb-6">
+                  <h4 className="font-semibold text-gray-900 mb-3">
+                    Key Achievements:
+                  </h4>
+                  <ul className="space-y-2">
+                    {experiences[selectedExperience].achievements.map(
+                      (achievement, idx) => (
+                        <li key={idx} className="flex items-start">
+                          <ChevronRight
+                            size={16}
+                            className="text-emerald-500 mr-2 mt-0.5 flex-shrink-0"
+                          />
+                          <span className="text-gray-600">{achievement}</span>
+                        </li>
+                      )
+                    )}
+                  </ul>
+                </div>
+
+                {/* Technologies */}
+                <div>
+                  <h4 className="font-semibold text-gray-900 mb-3">
+                    Technologies Used:
+                  </h4>
+                  <div className="flex flex-wrap gap-2">
+                    {experiences[selectedExperience].technologies.map((tech) => (
+                      <span
+                        key={tech}
+                        className="px-3 py-1 bg-gradient-to-r from-blue-50 to-emerald-50 text-gray-700 rounded-full text-sm font-medium border border-blue-100"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </section>
   );
