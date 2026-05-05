@@ -1,5 +1,8 @@
 import React from "react";
 import { ExternalLink, Github, Play } from "lucide-react";
+import getseatImg from "./assets/getseat.png";
+import ecommerceImg from "./assets/e-comerce.png";
+import pfaImg from "./assets/pfa.png";
 
 const Projects = () => {
   const projects = [
@@ -7,7 +10,7 @@ const Projects = () => {
       title: "GetSeat — Seat Mapping & Event Ticketing Platform",
       description:
         "Built from scratch during my time at United Systema. A full event platform featuring an interactive drag-and-drop seat map editor, real-time seat locking using WebSockets, an event management dashboard, a reservation and ticketing system, and an embeddable third-party iframe SDK that lets any platform integrate seat selection — fully documented. Deployed on DirectAdmin with a custom CI/CD pipeline for seamless updates. Currently in development, with a public launch planned in June 2026.",
-      image: "src/components/assets/getseat.png",
+      image: getseatImg,
       technologies: [
         "Next.js",
         "Laravel",
@@ -25,7 +28,7 @@ const Projects = () => {
       title: "E-Commerce Platform",
       description:
         "Full-featured e-commerce solution with user authentication, payment integration, and admin dashboard. Built with React, Node.js, MongoDB. With focus on backend over frontend.",
-      image: "src/components/assets/e-comerce.png",
+      image: ecommerceImg,
       technologies: [
         "React",
         "Node.js",
@@ -42,7 +45,7 @@ const Projects = () => {
       title: "LLM Liver Cancer Chatbot",
       description:
         "An AI-powered chatbot designed to assist patients and healthcare professionals with information and guidance related to liver cancer. Utilizes large language models to provide accurate, empathetic, and up-to-date responses.",
-      image: "src/components/assets/pfa.png",
+      image: pfaImg,
       technologies: ["React", "Node.js", "Python", "SapBert", "Mistral"],
       githubUrl: "https://github.com/adem-loghmari/pfa-project",
       liveUrl: "#",
