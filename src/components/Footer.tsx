@@ -18,8 +18,8 @@ const Footer = () => {
 
           {/* Description */}
           <p className="text-gray-400 mb-8 max-w-2xl mx-auto">
-            Full Stack MERN Developer passionate about creating exceptional web experiences. 
-            Let's build something amazing together.
+            Full-Stack Developer passionate about building real products.
+            Open to remote work, freelance, and relocation.
           </p>
 
           {/* Quick Links */}
@@ -54,7 +54,7 @@ const Footer = () => {
           <div className="border-t border-gray-800 pt-8">
             <div className="flex flex-col sm:flex-row justify-between items-center">
               <p className="text-gray-400 text-sm mb-4 sm:mb-0 flex items-center">
-                © 2025 Portfolio. Made with 
+                © 2026 Portfolio. Made with 
                 <Heart className="w-4 h-4 mx-2 text-red-500" />
                 by Adam Hmida Loghmari
               </p>

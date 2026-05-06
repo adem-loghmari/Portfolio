@@ -20,21 +20,11 @@ const Projects = () => {
     {
       title: "E-Commerce Platform",
       description:
-        "Full-featured e-commerce solution with user authentication, payment integration, and admin dashboard. Built with React, Node.js, MongoDB. With focus on backend over frontend.",
+        "Full-featured e-commerce solution with user authentication, cart and checkout flow, and admin dashboard. Built with React, Node.js, MongoDB.",
       image: ecommerceImg,
       technologies: ["React", "Node.js", "MongoDB", "Express", "chart.js", "JWT"],
       githubUrl: "https://github.com/adem-loghmari/E-commerce",
       liveUrl: "https://smartshop-lqyf.onrender.com",
-      featured: true,
-    },
-    {
-      title: "LLM Liver Cancer Chatbot",
-      description:
-        "An AI-powered chatbot designed to assist patients and healthcare professionals with information and guidance related to liver cancer. Utilizes large language models to provide accurate, empathetic, and up-to-date responses.",
-      image: pfaImg,
-      technologies: ["React", "Node.js", "Python", "SapBert", "Mistral"],
-      githubUrl: "https://github.com/adem-loghmari/pfa-project",
-      liveUrl: "#",
       featured: true,
     },
   ];

@@ -97,7 +97,7 @@ const ExperienceSection = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeader
           title="Work Experience"
-          description="My professional journey in web development, from junior developer to senior engineer, working with amazing teams and building impactful products."
+          description="Three internships across full-stack, AI, and SaaS development — building real products from day one."
         />
 
         <div className="relative">
