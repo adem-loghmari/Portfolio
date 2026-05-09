@@ -1,5 +1,5 @@
 import { Github, Linkedin, Download, ArrowDown } from 'lucide-react';
-import resume from './assets/Adam_Loghmari_Resume.pdf';
+import resume from './assets/Adam_Hmida_Loghmari_resume.pdf';
 import { scrollToSection } from '../lib/scroll';
 
 const Hero = () => {
