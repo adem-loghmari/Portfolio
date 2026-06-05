@@ -25,20 +25,28 @@ const ImageModal = ({
   onNext,
   onSelect,
 }: ImageModalProps) => (
-  <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4" onClick={onClose}>
-    <div className="bg-white rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-auto relative" onClick={(event) => event.stopPropagation()}>
+  <div
+    className="fixed inset-0 bg-black/75 backdrop-blur-md z-50 flex items-center justify-center p-4"
+    onClick={onClose}
+  >
+    <div
+      className="glass rounded-2xl border border-white/10 max-w-4xl w-full max-h-[90vh] overflow-auto relative"
+      onClick={(e) => e.stopPropagation()}
+    >
+      {/* Close button */}
       <button
         type="button"
         onClick={onClose}
-        className="absolute top-4 right-4 z-10 bg-white rounded-full p-2 hover:bg-gray-100 transition-colors shadow-lg"
+        className="absolute top-4 right-4 z-10 p-2 glass rounded-full border border-white/10 text-gray-400 hover:text-white hover:bg-white/10 transition-all"
       >
-        <X size={24} className="text-gray-800" />
+        <X size={18} />
       </button>
 
       <div className="p-8">
-        <h2 className="text-3xl font-bold text-gray-900 mb-6">{title}</h2>
+        <h2 className="text-2xl font-bold text-white mb-6 pr-12">{title}</h2>
 
-        <div className="relative bg-gray-100 rounded-xl overflow-hidden mb-6">
+        {/* Image carousel */}
+        <div className="relative bg-black/30 rounded-xl overflow-hidden mb-5 border border-white/[0.06]">
           <img
             src={images[currentIndex]}
             alt={`${title} screenshot ${currentIndex + 1}`}
@@ -50,55 +58,66 @@ const ImageModal = ({
               <button
                 type="button"
                 onClick={onPrev}
-                className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-80 hover:bg-opacity-100 rounded-full p-2 transition-all"
+                className="absolute left-3 top-1/2 -translate-y-1/2 p-2 glass rounded-full border border-white/10 text-white hover:bg-white/10 transition-all"
               >
-                <ChevronLeft size={24} className="text-gray-800" />
+                <ChevronLeft size={20} />
               </button>
               <button
                 type="button"
                 onClick={onNext}
-                className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-80 hover:bg-opacity-100 rounded-full p-2 transition-all"
+                className="absolute right-3 top-1/2 -translate-y-1/2 p-2 glass rounded-full border border-white/10 text-white hover:bg-white/10 transition-all"
               >
-                <ChevronRight size={24} className="text-gray-800" />
+                <ChevronRight size={20} />
               </button>
             </>
           )}
         </div>
 
+        {/* Dot navigation */}
         {images.length > 1 && (
           <div className="flex justify-center gap-2 mb-6">
-            {images.map((_, index) => (
+            {images.map((_, i) => (
               <button
-                key={index}
+                key={i}
                 type="button"
-                onClick={() => onSelect(index)}
-                className={`w-2 h-2 rounded-full transition-colors ${
-                  index === currentIndex ? "bg-blue-600" : "bg-gray-300 hover:bg-gray-400"
+                onClick={() => onSelect(i)}
+                className={`rounded-full transition-all ${
+                  i === currentIndex
+                    ? "w-5 h-2 bg-indigo-400"
+                    : "w-2 h-2 bg-white/20 hover:bg-white/40"
                 }`}
               />
             ))}
           </div>
         )}
 
-        <p className="text-gray-600 mb-6 leading-relaxed">{description}</p>
+        <p className="text-gray-400 text-sm mb-6 leading-relaxed">{description}</p>
 
+        {/* Achievements */}
         <div className="mb-6">
-          <h4 className="font-semibold text-gray-900 mb-3">Key Achievements:</h4>
+          <h4 className="font-semibold text-white mb-3 text-sm">Key Achievements</h4>
           <ul className="space-y-2">
-            {achievements.map((achievement, index) => (
-              <li key={index} className="flex items-start">
-                <ChevronRight size={16} className="text-emerald-500 mr-2 mt-0.5 flex-shrink-0" />
-                <span className="text-gray-600">{achievement}</span>
+            {achievements.map((item, i) => (
+              <li key={i} className="flex items-start gap-2 text-sm text-gray-400">
+                <ChevronRight
+                  size={13}
+                  className="text-indigo-400 mt-0.5 flex-shrink-0"
+                />
+                {item}
               </li>
             ))}
           </ul>
         </div>
 
+        {/* Technologies */}
         <div>
-          <h4 className="font-semibold text-gray-900 mb-3">Technologies Used:</h4>
-          <div className="flex flex-wrap gap-2">
+          <h4 className="font-semibold text-white mb-3 text-sm">Technologies</h4>
+          <div className="flex flex-wrap gap-1.5">
             {technologies.map((tech) => (
-              <span key={tech} className="px-3 py-1 bg-blue-50 text-slate-700 rounded-full text-sm font-medium border border-blue-100">
+              <span
+                key={tech}
+                className="px-2.5 py-1 text-xs text-gray-400 bg-white/[0.05] rounded-full border border-white/[0.08]"
+              >
                 {tech}
               </span>
             ))}

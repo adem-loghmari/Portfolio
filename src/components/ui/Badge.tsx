@@ -2,7 +2,7 @@ import { ReactNode } from "react";
 
 type BadgeProps = {
   children: ReactNode;
-  variant?: "soft" | "solid";
+  variant?: "soft" | "solid" | "outline";
   className?: string;
 };
 
@@ -11,13 +11,20 @@ const Badge = ({
   variant = "soft",
   className = "",
 }: BadgeProps) => {
-  const base = "inline-flex items-center rounded-full text-sm font-medium px-3 py-1 border ";
-  const style =
-    variant === "solid"
-      ? "bg-blue-600 text-white border-transparent"
-      : "bg-slate-100 text-slate-700 border-slate-200";
+  const base =
+    "inline-flex items-center rounded-full text-xs font-medium px-2.5 py-1 border transition-colors ";
 
-  return <span className={`${base}${style} ${className}`.trim()}>{children}</span>;
+  const styles = {
+    soft: "bg-white/[0.06] text-gray-300 border-white/[0.08] hover:border-white/20",
+    solid: "bg-indigo-600/80 text-indigo-100 border-indigo-500/50",
+    outline: "bg-transparent text-indigo-400 border-indigo-500/40 hover:border-indigo-400/70",
+  };
+
+  return (
+    <span className={`${base}${styles[variant]} ${className}`.trim()}>
+      {children}
+    </span>
+  );
 };
 
 export default Badge;

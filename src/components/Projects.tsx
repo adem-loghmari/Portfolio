@@ -2,49 +2,48 @@ import SectionHeader from "./ui/SectionHeader";
 import ProjectCard from "./ui/ProjectCard";
 import getseatImg from "./assets/getseat.png";
 import ecommerceImg from "./assets/e-comerce.png";
-import pfaImg from "./assets/pfa.png";
 
-const Projects = () => {
-  const projects = [
-    {
-      title: "GetSeat — Seat Mapping & Event Ticketing Platform",
-      description:
-        "Built from scratch during my time at United Systema. A full event platform featuring an interactive drag-and-drop seat map editor, real-time seat locking using WebSockets, an event management dashboard, a reservation and ticketing system, and an embeddable third-party iframe SDK that lets any platform integrate seat selection — fully documented. Deployed on DirectAdmin with a custom CI/CD pipeline for seamless updates. Currently in development, with a public launch planned in June 2026.",
-      image: getseatImg,
-      technologies: ["Next.js", "Laravel", "PHP", "WebSockets", "REST API", "DirectAdmin"],
-      status: "In Development",
-      githubUrl: "",
-      liveUrl: "https://getseat.dev",
-      featured: true,
-    },
-    {
-      title: "E-Commerce Platform",
-      description:
-        "Full-featured e-commerce solution with user authentication, cart and checkout flow, and admin dashboard. Built with React, Node.js, MongoDB.",
-      image: ecommerceImg,
-      technologies: ["React", "Node.js", "MongoDB", "Express", "chart.js", "JWT"],
-      githubUrl: "https://github.com/adem-loghmari/E-commerce",
-      liveUrl: "https://smartshop-lqyf.onrender.com",
-      featured: true,
-    },
-  ];
+const projects = [
+  {
+    title: "GetSeat — Seat Mapping & Event Ticketing Platform",
+    description:
+      "Built from scratch during my time at United Systema. A full event platform featuring an interactive drag-and-drop seat map editor, real-time seat locking using WebSockets, an event management dashboard, a reservation and ticketing system, and an embeddable third-party iframe SDK — fully documented. Deployed on DirectAdmin with a custom CI/CD pipeline. Public launch planned June 2026.",
+    image: getseatImg,
+    technologies: ["Next.js", "Laravel", "PHP", "WebSockets", "REST API", "DirectAdmin"],
+    status: "In Development",
+    githubUrl: "",
+    liveUrl: "https://getseat.dev",
+    featured: true,
+  },
+  {
+    title: "E-Commerce Platform",
+    description:
+      "Full-featured e-commerce solution with user authentication, cart and checkout flow, and an admin dashboard with analytics. Built with React, Node.js, MongoDB, and JWT authentication.",
+    image: ecommerceImg,
+    technologies: ["React", "Node.js", "MongoDB", "Express", "Chart.js", "JWT"],
+    githubUrl: "https://github.com/adem-loghmari/E-commerce",
+    liveUrl: "https://smartshop-lqyf.onrender.com",
+    featured: true,
+  },
+];
 
-  return (
-    <section id="projects" className="py-20 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <SectionHeader
-          title="Featured Projects"
-          description="Here are some of my recent projects that showcase my skills in full stack development, from concept to deployment."
-        />
+const Projects = () => (
+  <section id="projects" className="section-darker">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <SectionHeader
+        title="Featured Projects"
+        description="A selection of projects that showcase full-stack skills — from concept to deployment."
+      />
 
-        <div className="grid lg:grid-cols-2 gap-8">
-          {projects.filter((project) => project.featured).map((project) => (
+      <div className="grid lg:grid-cols-2 gap-8">
+        {projects
+          .filter((p) => p.featured)
+          .map((project) => (
             <ProjectCard key={project.title} project={project} />
           ))}
-        </div>
       </div>
-    </section>
-  );
-};
+    </div>
+  </section>
+);
 
 export default Projects;

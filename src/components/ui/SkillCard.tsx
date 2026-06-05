@@ -1,5 +1,4 @@
 import { ReactNode } from "react";
-import Badge from "./Badge";
 
 type Skill = {
   category: string;
@@ -13,19 +12,21 @@ type SkillCardProps = {
 };
 
 const SkillCard = ({ skill }: SkillCardProps) => (
-  <div className="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow">
-    <div className="flex items-center mb-4">
-      <div className={`p-3 rounded-lg bg-gradient-to-r ${skill.color} text-white mr-4`}>
-        {skill.icon}
-      </div>
-      <h4 className="text-xl font-semibold text-gray-900">{skill.category}</h4>
+  <div className="glass rounded-xl p-5 card-hover group">
+    <div
+      className={`inline-flex p-2.5 rounded-lg bg-gradient-to-br ${skill.color} text-white mb-3`}
+    >
+      {skill.icon}
     </div>
-
-    <div className="flex flex-wrap gap-2">
+    <h4 className="text-white font-semibold mb-3 text-sm">{skill.category}</h4>
+    <div className="flex flex-wrap gap-1.5">
       {skill.technologies.map((tech) => (
-        <Badge key={tech} className="bg-slate-100 text-slate-700 border-slate-200">
+        <span
+          key={tech}
+          className="px-2 py-0.5 text-[11px] font-medium text-gray-400 bg-white/[0.05] rounded-full border border-white/[0.07] hover:text-gray-300 hover:border-white/20 transition-colors"
+        >
           {tech}
-        </Badge>
+        </span>
       ))}
     </div>
   </div>

@@ -1,86 +1,117 @@
-import { Github, Linkedin, Download, ArrowDown } from 'lucide-react';
-import resume from './assets/Adam_Hmida_Loghmari_resume.pdf';
-import { scrollToSection } from '../lib/scroll';
+import { Github, Linkedin, Download, ArrowDown } from "lucide-react";
+import resume from "./assets/Adam_Hmida_Loghmari_resume.pdf";
+import { scrollToSection } from "../lib/scroll";
 
-const Hero = () => {
+const techStack = ["React", "Next.js", "Node.js", "TypeScript", "Laravel", "Go"];
 
-  return (
-    <section className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900 text-white relative overflow-hidden pt-16 ">
-      {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width=%2260%22 height=%2260%22 viewBox=%220 0 60 60%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cg fill=%22none%22 fill-rule=%22evenodd%22%3E%3Cg fill=%22%239C92AC%22 fill-opacity=%220.1%22%3E%3Ccircle cx=%2230%22 cy=%2230%22 r=%224%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] bg-repeat"></div>
+const Hero = () => (
+  <section className="relative min-h-screen flex items-center justify-center bg-gray-950 overflow-hidden pt-16">
+    {/* ── Gradient Orbs ── */}
+    <div className="absolute inset-0 overflow-hidden pointer-events-none">
+      {/* Indigo — top left */}
+      <div className="absolute -top-48 -left-48 w-[500px] h-[500px] bg-indigo-600/20 rounded-full blur-[120px] animate-float animate-glow-pulse" />
+      {/* Cyan — top right */}
+      <div className="absolute -top-24 right-0 w-[400px] h-[400px] bg-cyan-500/15 rounded-full blur-[100px] animate-float-slow" />
+      {/* Violet — bottom center */}
+      <div className="absolute bottom-0 left-1/3 w-[450px] h-[450px] bg-violet-600/15 rounded-full blur-[120px] animate-float-reverse" />
+
+      {/* Grid texture */}
+      <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.015)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.015)_1px,transparent_1px)] bg-[size:72px_72px]" />
+
+      {/* Radial vignette */}
+      <div className="absolute inset-0 bg-gradient-radial from-transparent via-transparent to-gray-950/60" />
+    </div>
+
+    {/* ── Content ── */}
+    <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+
+      {/* Available badge */}
+      <div className="inline-flex items-center gap-2 px-4 py-2 glass rounded-full border border-white/10 text-sm text-gray-400 mb-10 animate-fade-in-up">
+        <span className="w-2 h-2 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.8)] animate-pulse" />
+        Available for remote work &amp; relocation
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-        <div className="max-w-4xl mx-auto">
+      {/* Heading */}
+      <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-white leading-tight mb-6 animate-fade-in-up animation-delay-200">
+        Full‑Stack
+        <br />
+        <span className="gradient-text">Developer</span>
+      </h1>
 
-          {/* Main Heading */}
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-4 animate-fade-in-up animation-delay-200">
-            <span className="text-white">Full-Stack Developer</span>
-            <br />
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-emerald-400">
-              React · Next.js · Node.js · Laravel
-            </span>
-          </h1>
+      {/* Subtitle */}
+      <p className="text-lg sm:text-xl text-gray-400 max-w-2xl mx-auto mb-10 leading-relaxed animate-fade-in-up animation-delay-400">
+        Building scalable platforms with{" "}
+        <span className="text-gray-200 font-medium">
+          React, Next.js, Node.js &amp; Laravel
+        </span>
+        .<br />
+        Real products. Real impact.
+      </p>
 
-          {/* Subtitle */}
-          <p className="text-xl sm:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto animate-fade-in-up animation-delay-400">
-            Open to remote work & relocation
-          </p>
-
-          {/* Tech Stack */}
-          <div className="flex flex-wrap justify-center gap-4 mb-12 animate-fade-in-up animation-delay-600">
-            {['🟢 MongoDB', '⚙️ Express.js', '⚛️ React.js', '🟩 Node.js', '🔷 TypeScript'].map((tech) => (
-              <span 
-                key={tech}
-                className="px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full text-sm font-medium border border-white/20 hover:bg-white/20 transition-colors"
-              >
-                {tech}
-              </span>
-            ))}
-          </div>
-
-          {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16 animate-fade-in-up animation-delay-800">
-            <button 
-              onClick={() => scrollToSection('projects')}
-              className="px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white rounded-full font-semibold transition-all transform hover:scale-105 shadow-lg hover:shadow-xl"
-            >
-              Explore My Projects
-            </button>
-            <a
-              href={resume}
-              download="Adam_Loghmari_Resume.pdf"
-              target="_blank"
-              rel="noreferrer"
-              className="px-8 py-4 bg-transparent border-2 border-white/30 hover:border-white text-white rounded-full font-semibold transition-all transform hover:scale-105 flex items-center justify-center gap-2"
-            >
-              <Download size={20} />
-              Download Resume
-            </a>
-          </div>
-
-          {/* Social Links */}
-          <div className="flex justify-center gap-6 mb-16 animate-fade-in-up animation-delay-1000">
-            <a href="https://github.com/adem-loghmari" className="p-3 bg-white/10 backdrop-blur-sm rounded-full hover:bg-white/20 transition-colors transform hover:scale-110">
-              <Github size={24} />
-            </a>
-            <a href="https://www.linkedin.com/in/adam-hmida-loghmari-8756b22b1/" className="p-3 bg-white/10 backdrop-blur-sm rounded-full hover:bg-white/20 transition-colors transform hover:scale-110">
-              <Linkedin size={24} />
-            </a>
-          </div>
-
-          {/* Scroll Indicator */}
-          <button 
-            onClick={() => scrollToSection('about')}
-            className="animate-bounce"
+      {/* Tech badges */}
+      <div className="flex flex-wrap justify-center gap-2.5 mb-12 animate-fade-in-up animation-delay-600">
+        {techStack.map((tech) => (
+          <span
+            key={tech}
+            className="px-3.5 py-1.5 glass rounded-full text-sm font-medium text-gray-300 border border-white/[0.09] hover:border-indigo-500/50 hover:text-white transition-all duration-200"
           >
-            <ArrowDown size={32} className="text-white/60 hover:text-white transition-colors" />
-          </button>
-        </div>
+            {tech}
+          </span>
+        ))}
       </div>
-    </section>
-  );
-};
+
+      {/* CTAs */}
+      <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12 animate-fade-in-up animation-delay-800">
+        <button
+          onClick={() => scrollToSection("projects")}
+          className="px-8 py-3.5 bg-gradient-to-r from-indigo-600 to-cyan-600 text-white rounded-full font-semibold hover:opacity-90 transition-opacity shadow-lg shadow-indigo-500/25 text-sm"
+        >
+          View My Work
+        </button>
+        <a
+          href={resume}
+          download="Adam_Hmida_Loghmari_Resume.pdf"
+          target="_blank"
+          rel="noreferrer"
+          className="px-8 py-3.5 glass border border-white/[0.12] hover:border-white/25 text-white rounded-full font-semibold transition-all flex items-center justify-center gap-2 text-sm"
+        >
+          <Download size={16} />
+          Download Resume
+        </a>
+      </div>
+
+      {/* Social links */}
+      <div className="flex justify-center gap-3 mb-20 animate-fade-in-up animation-delay-1000">
+        <a
+          href="https://github.com/adem-loghmari"
+          target="_blank"
+          rel="noreferrer"
+          className="p-3 glass rounded-full text-gray-400 hover:text-white border border-white/[0.09] hover:border-white/25 hover:shadow-lg hover:shadow-indigo-500/10 transition-all"
+          aria-label="GitHub"
+        >
+          <Github size={19} />
+        </a>
+        <a
+          href="https://www.linkedin.com/in/adam-hmida-loghmari-8756b22b1/"
+          target="_blank"
+          rel="noreferrer"
+          className="p-3 glass rounded-full text-gray-400 hover:text-white border border-white/[0.09] hover:border-white/25 hover:shadow-lg hover:shadow-cyan-500/10 transition-all"
+          aria-label="LinkedIn"
+        >
+          <Linkedin size={19} />
+        </a>
+      </div>
+
+      {/* Scroll indicator */}
+      <button
+        onClick={() => scrollToSection("about")}
+        className="animate-bounce text-gray-600 hover:text-gray-400 transition-colors"
+        aria-label="Scroll to About"
+      >
+        <ArrowDown size={22} />
+      </button>
+    </div>
+  </section>
+);
 
 export default Hero;

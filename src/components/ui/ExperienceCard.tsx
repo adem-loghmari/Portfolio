@@ -24,70 +24,80 @@ const ExperienceCard = ({ experience, index, onOpen }: ExperienceCardProps) => {
   const spacing = index % 2 === 0 ? "md:pr-12" : "md:pl-12";
 
   return (
-    <div className={`relative flex items-center ${alignment}`}>
-      <div className="absolute left-4 md:left-1/2 transform -translate-x-1/2 w-4 h-4 bg-blue-600 rounded-full border-4 border-white shadow-lg z-10" />
+    <div className={`relative flex items-start ${alignment}`}>
+      {/* Timeline dot */}
+      <div className="absolute left-4 md:left-1/2 transform -translate-x-1/2 w-3 h-3 bg-gradient-to-br from-indigo-500 to-cyan-500 rounded-full border-2 border-gray-950 z-10 mt-9 shadow-[0_0_12px_rgba(99,102,241,0.6)]" />
 
-      <div className={`ml-12 md:ml-0 flex-1 ${spacing}`}>
+      <div className={`ml-10 md:ml-0 flex-1 ${spacing}`}>
         <button
           type="button"
           onClick={onOpen}
-          className={`w-full text-left bg-white rounded-2xl shadow-lg transition-all duration-300 p-8 relative ${
+          className={`w-full text-left glass rounded-2xl p-7 transition-all duration-300 ${
             experience.images.length > 0
-              ? "cursor-pointer hover:shadow-2xl hover:scale-105"
-              : "hover:shadow-xl"
+              ? "card-hover cursor-pointer"
+              : "hover:border-white/15"
           }`}
         >
+          {/* Gallery hint */}
           {experience.images.length > 0 && (
-            <div className="absolute top-4 right-4 bg-blue-600 text-white rounded-full p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-lg">
-              <Image size={20} />
+            <div className="absolute top-4 right-4 flex items-center gap-1.5 text-xs text-indigo-400/70 font-medium">
+              <Image size={13} />
+              <span>{experience.images.length} screenshots</span>
             </div>
           )}
 
-          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4">
+          {/* Header */}
+          <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-5 pr-20">
             <div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-1">{experience.title}</h3>
-              <div className="flex items-center text-blue-600 font-semibold mb-2">
-                <span>{experience.company}</span>
-                <ChevronRight size={16} className="mx-1" />
+              <h3 className="text-lg font-bold text-white mb-1 leading-snug">
+                {experience.title}
+              </h3>
+              <div className="flex items-center gap-2 text-sm">
+                <span className="text-indigo-400 font-medium">
+                  {experience.company}
+                </span>
+                <span className="text-white/20">·</span>
                 <span className="text-gray-500">{experience.type}</span>
               </div>
             </div>
 
-            <div className="flex flex-col sm:items-end text-sm text-gray-500">
-              <div className="flex items-center mb-1">
-                <Calendar size={14} className="mr-1" />
-                <span>{experience.period}</span>
-              </div>
-              <div className="flex items-center">
-                <MapPin size={14} className="mr-1" />
-                <span>{experience.location}</span>
-              </div>
+            <div className="flex flex-col sm:items-end mt-2 sm:mt-0 gap-1">
+              <span className="flex items-center gap-1 text-xs text-gray-500">
+                <Calendar size={11} />
+                {experience.period}
+              </span>
+              <span className="flex items-center gap-1 text-xs text-gray-500">
+                <MapPin size={11} />
+                {experience.location}
+              </span>
             </div>
           </div>
 
-          <p className="text-gray-600 mb-6 leading-relaxed">{experience.description}</p>
+          {/* Description */}
+          <p className="text-gray-400 text-sm mb-5 leading-relaxed">
+            {experience.description}
+          </p>
 
-          <div className="mb-6">
-            <h4 className="font-semibold text-gray-900 mb-3">Key Achievements:</h4>
-            <ul className="space-y-2">
-              {experience.achievements.map((achievement, index) => (
-                <li key={index} className="flex items-start">
-                  <ChevronRight size={16} className="text-emerald-500 mr-2 mt-0.5 flex-shrink-0" />
-                  <span className="text-gray-600">{achievement}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
+          {/* Achievements */}
+          <ul className="space-y-1.5 mb-5">
+            {experience.achievements.map((item, i) => (
+              <li key={i} className="flex items-start gap-2 text-sm text-gray-400">
+                <ChevronRight
+                  size={13}
+                  className="text-indigo-400 mt-0.5 flex-shrink-0"
+                />
+                {item}
+              </li>
+            ))}
+          </ul>
 
-          <div>
-            <h4 className="font-semibold text-gray-900 mb-3">Technologies Used:</h4>
-            <div className="flex flex-wrap gap-2">
-              {experience.technologies.map((tech) => (
-                <Badge key={tech} className="bg-blue-50 text-slate-700 border-blue-100">
-                  {tech}
-                </Badge>
-              ))}
-            </div>
+          {/* Tech badges */}
+          <div className="flex flex-wrap gap-1.5">
+            {experience.technologies.map((tech) => (
+              <Badge key={tech} variant="outline">
+                {tech}
+              </Badge>
+            ))}
           </div>
         </button>
       </div>
