@@ -139,9 +139,7 @@ const ExperienceSection = () => {
             </p>
             <p className="text-gray-500 text-sm mb-4">2023 – 2026</p>
             <p className="text-gray-400 text-sm leading-relaxed">
-              Currently pursuing a degree in ICT Engineering with a focus on
-              full-stack development, networking, cloud, AI, and system design
-              through hands-on academic projects.
+              ICT Engineer specializing in full-stack development, cloud computing, AI, networking, and system design. Experienced in building scalable web applications and delivering real-world solutions through academic and professional projects.
             </p>
           </div>
         </div>
