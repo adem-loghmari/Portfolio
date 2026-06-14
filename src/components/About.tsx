@@ -12,13 +12,13 @@ const skills = [
   {
     category: "Backend",
     icon: <Server className="w-5 h-5" />,
-    technologies: ["Node.js", "Express.js", "Laravel", "Symfony", "RESTful APIs", "Go"],
+    technologies: ["Node.js", "Express.js", "Laravel", "WebSockets", "REST APIs", "Go"],
     color: "from-emerald-500 to-teal-500",
   },
   {
     category: "Database",
     icon: <Database className="w-5 h-5" />,
-    technologies: ["MongoDB", "MySQL", "Firebase", "PostgreSQL"],
+    technologies: ["PostgreSQL", "MySQL", "MongoDB", "Prisma", "Firebase"],
     color: "from-violet-500 to-purple-500",
   },
   {
@@ -34,18 +34,18 @@ const About = () => (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <SectionHeader
         title="About Me"
-        description="Full-stack developer building real products — not just side projects. Finishing my ICT Engineering degree while actively looking for remote roles and freelance opportunities."
+        description="Full-stack developer building real products — not just side projects. I ship production SaaS end to end and I'm actively looking for remote roles."
       />
 
       <div className="grid lg:grid-cols-2 gap-10 items-start">
         {/* Story */}
-        <div className="glass rounded-2xl p-8 border border-white/[0.06]">
+        <div className="glass rounded-2xl p-8">
           <div className="flex items-center gap-2.5 mb-6">
             <div className="w-1 h-6 bg-gradient-to-b from-indigo-500 to-cyan-500 rounded-full" />
-            <h3 className="text-xl font-bold text-white">My Journey</h3>
+            <h3 className="text-xl font-bold text-gray-900 dark:text-white">My Journey</h3>
           </div>
 
-          <div className="space-y-4 text-gray-400 leading-relaxed text-sm">
+          <div className="space-y-4 text-gray-600 dark:text-gray-400 leading-relaxed text-sm">
             <p>
               I discovered coding back in high school — and it clicked instantly.
               What started as a simple curiosity quickly became a passion for
@@ -65,15 +65,15 @@ const About = () => (
           </div>
 
           {/* Quick stats */}
-          <div className="grid grid-cols-3 gap-4 mt-8 pt-6 border-t border-white/[0.06]">
+          <div className="grid grid-cols-3 gap-4 mt-8 pt-6 border-t border-gray-900/10 dark:border-white/[0.06]">
             {[
-              { value: "3+", label: "Internships" },
+              { value: "4", label: "Companies" },
               { value: "10+", label: "Projects" },
-              { value: "2026", label: "Available" },
+              { value: "Remote", label: "Ready" },
             ].map((stat) => (
               <div key={stat.label} className="text-center">
                 <div className="text-2xl font-bold gradient-text">{stat.value}</div>
-                <div className="text-xs text-gray-500 mt-0.5">{stat.label}</div>
+                <div className="text-xs text-gray-500 dark:text-gray-500 mt-0.5">{stat.label}</div>
               </div>
             ))}
           </div>

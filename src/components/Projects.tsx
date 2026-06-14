@@ -1,24 +1,36 @@
 import SectionHeader from "./ui/SectionHeader";
 import ProjectCard from "./ui/ProjectCard";
 import getseatImg from "./assets/getseat.png";
+import deliveryaggImg from "./assets/deliveryagg.png";
 import ecommerceImg from "./assets/e-comerce.png";
 
 const projects = [
   {
     title: "GetSeat — Seat Mapping & Event Ticketing Platform",
     description:
-      "Built from scratch during my time at United Systema. A full event platform featuring an interactive drag-and-drop seat map editor, real-time seat locking using WebSockets, an event management dashboard, a reservation and ticketing system, and an embeddable third-party iframe SDK — fully documented. Deployed on DirectAdmin with a custom CI/CD pipeline. Public launch planned June 2026.",
+      "Built from scratch at United Systema. A real-time event platform with an interactive drag-and-drop seat-map editor (Konva.js — 60 FPS while manipulating 1,000+ shapes), WebSocket seat locking that prevents double-booking under concurrent checkout, an event dashboard, a ticketing system, and a fully documented embeddable iframe SDK for third-party integration. Deployed on DirectAdmin via a custom CI/CD pipeline. Public launch June 2026.",
     image: getseatImg,
-    technologies: ["Next.js", "Laravel", "PHP", "WebSockets", "REST API", "DirectAdmin"],
+    technologies: ["Next.js 16", "React 19", "Konva.js", "Laravel 12", "WebSockets", "REST API"],
     status: "In Development",
     githubUrl: "",
     liveUrl: "https://getseat.dev",
     featured: true,
   },
   {
-    title: "E-Commerce Platform",
+    title: "DeliveryAgg — B2B Delivery-Management SaaS",
     description:
-      "Full-featured e-commerce solution with user authentication, cart and checkout flow, and an admin dashboard with analytics. Built with React, Node.js, MongoDB, and JWT authentication.",
+      "A multi-tenant courier-management platform with separate business and admin portals. Includes an order-lifecycle state machine, bulk CSV order upload, automated monthly invoicing with on-the-fly PDF generation, public order tracking, and role-based access. Built on Next.js 16 (App Router + Server Actions) with an Express 5 + Prisma + PostgreSQL API, JWT auth, and rate limiting.",
+    image: deliveryaggImg,
+    technologies: ["Next.js 16", "React 19", "TypeScript", "Express 5", "Prisma", "PostgreSQL", "JWT", "Tailwind CSS"],
+    status: "In Development",
+    githubUrl: "https://github.com/adem-loghmari/deliveryagg",
+    liveUrl: "https://deliveryagg.vercel.app",
+    featured: true,
+  },
+  {
+    title: "SmartShop — E-Commerce Platform",
+    description:
+      "Full-featured e-commerce solution with user authentication, cart and checkout flow, product management, and an admin dashboard with analytics. Built with React, Node.js, MongoDB, and JWT authentication; deployed via GitHub Actions.",
     image: ecommerceImg,
     technologies: ["React", "Node.js", "MongoDB", "Express", "Chart.js", "JWT"],
     githubUrl: "https://github.com/adem-loghmari/E-commerce",

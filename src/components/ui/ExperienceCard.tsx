@@ -26,7 +26,7 @@ const ExperienceCard = ({ experience, index, onOpen }: ExperienceCardProps) => {
   return (
     <div className={`relative flex items-start ${alignment}`}>
       {/* Timeline dot */}
-      <div className="absolute left-4 md:left-1/2 transform -translate-x-1/2 w-3 h-3 bg-gradient-to-br from-indigo-500 to-cyan-500 rounded-full border-2 border-gray-950 z-10 mt-9 shadow-[0_0_12px_rgba(99,102,241,0.6)]" />
+      <div className="absolute left-4 md:left-1/2 transform -translate-x-1/2 w-3 h-3 bg-gradient-to-br from-indigo-500 to-cyan-500 rounded-full border-2 border-white dark:border-gray-950 z-10 mt-9 shadow-[0_0_12px_rgba(99,102,241,0.6)]" />
 
       <div className={`ml-10 md:ml-0 flex-1 ${spacing}`}>
         <button
@@ -35,12 +35,12 @@ const ExperienceCard = ({ experience, index, onOpen }: ExperienceCardProps) => {
           className={`w-full text-left glass rounded-2xl p-7 transition-all duration-300 ${
             experience.images.length > 0
               ? "card-hover cursor-pointer"
-              : "hover:border-white/15"
+              : "hover:border-gray-900/15 dark:hover:border-white/15"
           }`}
         >
           {/* Gallery hint */}
           {experience.images.length > 0 && (
-            <div className="absolute top-4 right-4 flex items-center gap-1.5 text-xs text-indigo-400/70 font-medium">
+            <div className="absolute top-4 right-4 flex items-center gap-1.5 text-xs text-indigo-500 dark:text-indigo-400/70 font-medium">
               <Image size={13} />
               <span>{experience.images.length} screenshots</span>
             </div>
@@ -49,15 +49,15 @@ const ExperienceCard = ({ experience, index, onOpen }: ExperienceCardProps) => {
           {/* Header */}
           <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-5 pr-20">
             <div>
-              <h3 className="text-lg font-bold text-white mb-1 leading-snug">
+              <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-1 leading-snug">
                 {experience.title}
               </h3>
               <div className="flex items-center gap-2 text-sm">
-                <span className="text-indigo-400 font-medium">
+                <span className="text-indigo-600 dark:text-indigo-400 font-medium">
                   {experience.company}
                 </span>
-                <span className="text-white/20">·</span>
-                <span className="text-gray-500">{experience.type}</span>
+                <span className="text-gray-900/20 dark:text-white/20">·</span>
+                <span className="text-gray-500 dark:text-gray-500">{experience.type}</span>
               </div>
             </div>
 
@@ -74,17 +74,17 @@ const ExperienceCard = ({ experience, index, onOpen }: ExperienceCardProps) => {
           </div>
 
           {/* Description */}
-          <p className="text-gray-400 text-sm mb-5 leading-relaxed">
+          <p className="text-gray-600 dark:text-gray-400 text-sm mb-5 leading-relaxed">
             {experience.description}
           </p>
 
           {/* Achievements */}
           <ul className="space-y-1.5 mb-5">
             {experience.achievements.map((item, i) => (
-              <li key={i} className="flex items-start gap-2 text-sm text-gray-400">
+              <li key={i} className="flex items-start gap-2 text-sm text-gray-600 dark:text-gray-400">
                 <ChevronRight
                   size={13}
-                  className="text-indigo-400 mt-0.5 flex-shrink-0"
+                  className="text-indigo-500 dark:text-indigo-400 mt-0.5 flex-shrink-0"
                 />
                 {item}
               </li>

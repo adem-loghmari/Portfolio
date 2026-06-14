@@ -8,7 +8,7 @@ type Project = {
   technologies: string[];
   status?: string;
   githubUrl?: string;
-  liveUrl: string;
+  liveUrl?: string;
   featured: boolean;
 };
 
@@ -19,7 +19,7 @@ type ProjectCardProps = {
 const ProjectCard = ({ project }: ProjectCardProps) => (
   <article className="group glass rounded-2xl overflow-hidden card-hover flex flex-col">
     {/* Image */}
-    <div className="relative overflow-hidden bg-black/20">
+    <div className="relative overflow-hidden bg-gray-100 dark:bg-black/20">
       <img
         src={project.image}
         alt={project.title}
@@ -44,23 +44,25 @@ const ProjectCard = ({ project }: ProjectCardProps) => (
             <Github size={15} />
           </a>
         )}
-        <a
-          href={project.liveUrl}
-          target="_blank"
-          rel="noreferrer"
-          className="p-2 bg-black/60 backdrop-blur-sm rounded-full text-white hover:bg-indigo-600/80 transition-colors"
-        >
-          <ExternalLink size={15} />
-        </a>
+        {project.liveUrl && (
+          <a
+            href={project.liveUrl}
+            target="_blank"
+            rel="noreferrer"
+            className="p-2 bg-black/60 backdrop-blur-sm rounded-full text-white hover:bg-indigo-600/80 transition-colors"
+          >
+            <ExternalLink size={15} />
+          </a>
+        )}
       </div>
     </div>
 
     {/* Content */}
     <div className="p-6 flex flex-col flex-1">
-      <h3 className="text-xl font-bold text-white mb-2 leading-snug">
+      <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2 leading-snug">
         {project.title}
       </h3>
-      <p className="text-gray-400 text-sm mb-4 leading-relaxed flex-1">
+      <p className="text-gray-600 dark:text-gray-400 text-sm mb-4 leading-relaxed flex-1">
         {project.description}
       </p>
 
@@ -71,21 +73,23 @@ const ProjectCard = ({ project }: ProjectCardProps) => (
       </div>
 
       <div className="flex flex-wrap gap-3">
-        <a
-          href={project.liveUrl}
-          target="_blank"
-          rel="noreferrer"
-          className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-indigo-600 to-cyan-600 text-white rounded-lg text-sm font-medium hover:opacity-90 transition-opacity shadow-lg shadow-indigo-500/20"
-        >
-          <Play size={14} />
-          Live Demo
-        </a>
+        {project.liveUrl && (
+          <a
+            href={project.liveUrl}
+            target="_blank"
+            rel="noreferrer"
+            className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-indigo-600 to-cyan-600 text-white rounded-lg text-sm font-medium hover:opacity-90 transition-opacity shadow-lg shadow-indigo-500/20"
+          >
+            <Play size={14} />
+            Live Demo
+          </a>
+        )}
         {project.githubUrl && (
           <a
             href={project.githubUrl}
             target="_blank"
             rel="noreferrer"
-            className="flex items-center gap-2 px-4 py-2 glass border border-white/[0.12] text-gray-300 rounded-lg text-sm font-medium hover:border-white/30 hover:text-white transition-all"
+            className="flex items-center gap-2 px-4 py-2 glass text-gray-700 dark:text-gray-300 rounded-lg text-sm font-medium hover:border-gray-900/25 dark:hover:border-white/30 hover:text-gray-900 dark:hover:text-white transition-all"
           >
             <Github size={14} />
             Source Code

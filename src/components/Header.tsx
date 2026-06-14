@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
-import { Menu, X, Code2, User, Briefcase, Mail, FolderOpen } from "lucide-react";
+import { Menu, X, Code2, User, Briefcase, Mail, FolderOpen, Sun, Moon } from "lucide-react";
 import { scrollToSection } from "../lib/scroll";
+import { useTheme } from "../lib/theme";
 
 const navItems = [
   { id: "about", label: "About", icon: User },
@@ -12,6 +13,7 @@ const navItems = [
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const { theme, toggle } = useTheme();
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 40);
@@ -23,7 +25,7 @@ const Header = () => {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         isScrolled
-          ? "bg-gray-950/80 backdrop-blur-xl border-b border-white/[0.06] shadow-2xl shadow-black/20"
+          ? "bg-white/80 dark:bg-gray-950/80 backdrop-blur-xl border-b border-gray-900/10 dark:border-white/[0.06] shadow-lg shadow-gray-900/5 dark:shadow-2xl dark:shadow-black/20"
           : "bg-transparent"
       }`}
     >
@@ -34,7 +36,7 @@ const Header = () => {
             <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-indigo-500 to-cyan-500 flex items-center justify-center shadow-lg shadow-indigo-500/25">
               <Code2 size={16} className="text-white" />
             </div>
-            <span className="font-bold text-white text-sm tracking-tight">
+            <span className="font-bold text-gray-900 dark:text-white text-sm tracking-tight">
               Adam Loghmari
             </span>
           </div>
@@ -48,7 +50,7 @@ const Header = () => {
                   key={item.id}
                   type="button"
                   onClick={() => scrollToSection(item.id)}
-                  className="flex items-center gap-1.5 px-4 py-2 rounded-full text-gray-400 hover:text-white hover:bg-white/[0.06] transition-all duration-200 text-sm font-medium"
+                  className="flex items-center gap-1.5 px-4 py-2 rounded-full text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white hover:bg-gray-900/[0.05] dark:hover:bg-white/[0.06] transition-all duration-200 text-sm font-medium"
                 >
                   <Icon size={13} />
                   {item.label}
@@ -57,8 +59,16 @@ const Header = () => {
             })}
           </div>
 
-          {/* Hire Me CTA */}
-          <div className="hidden md:flex">
+          {/* Right side: theme toggle + Hire Me */}
+          <div className="hidden md:flex items-center gap-2">
+            <button
+              type="button"
+              onClick={toggle}
+              className="p-2 rounded-full text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white hover:bg-gray-900/[0.05] dark:hover:bg-white/[0.06] transition-all"
+              aria-label="Toggle color theme"
+            >
+              {theme === "dark" ? <Sun size={16} /> : <Moon size={16} />}
+            </button>
             <button
               type="button"
               onClick={() => scrollToSection("contact")}
@@ -68,19 +78,29 @@ const Header = () => {
             </button>
           </div>
 
-          {/* Mobile toggle */}
-          <button
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="md:hidden p-2 text-gray-400 hover:text-white transition-colors"
-            aria-label="Toggle menu"
-          >
-            {isMenuOpen ? <X size={20} /> : <Menu size={20} />}
-          </button>
+          {/* Mobile controls */}
+          <div className="md:hidden flex items-center gap-1">
+            <button
+              type="button"
+              onClick={toggle}
+              className="p-2 text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition-colors"
+              aria-label="Toggle color theme"
+            >
+              {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
+            </button>
+            <button
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className="p-2 text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition-colors"
+              aria-label="Toggle menu"
+            >
+              {isMenuOpen ? <X size={20} /> : <Menu size={20} />}
+            </button>
+          </div>
         </div>
 
         {/* Mobile menu */}
         {isMenuOpen && (
-          <div className="md:hidden glass border-t border-white/[0.06]">
+          <div className="md:hidden glass border-t border-gray-900/10 dark:border-white/[0.06]">
             <div className="px-2 py-3 space-y-1">
               {navItems.map((item) => {
                 const Icon = item.icon;
@@ -92,7 +112,7 @@ const Header = () => {
                       scrollToSection(item.id);
                       setIsMenuOpen(false);
                     }}
-                    className="flex items-center gap-3 w-full px-4 py-3 text-gray-400 hover:text-white hover:bg-white/[0.06] rounded-xl transition-all text-sm font-medium"
+                    className="flex items-center gap-3 w-full px-4 py-3 text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white hover:bg-gray-900/[0.05] dark:hover:bg-white/[0.06] rounded-xl transition-all text-sm font-medium"
                   >
                     <Icon size={15} />
                     {item.label}
