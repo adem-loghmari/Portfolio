@@ -1,5 +1,13 @@
-import { ExternalLink, Github, Play } from "lucide-react";
-import Badge from "./Badge";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import CardMedia from "@mui/material/CardMedia";
+import Chip from "@mui/material/Chip";
+import Stack from "@mui/material/Stack";
+import Typography from "@mui/material/Typography";
+import GitHubIcon from "@mui/icons-material/GitHub";
+import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 
 type Project = {
   title: string;
@@ -17,87 +25,76 @@ type ProjectCardProps = {
 };
 
 const ProjectCard = ({ project }: ProjectCardProps) => (
-  <article className="group glass rounded-2xl overflow-hidden card-hover flex flex-col">
+  <Card
+    component="article"
+    sx={{
+      display: "flex",
+      flexDirection: "column",
+      transition: "border-color 0.2s, box-shadow 0.2s",
+      "&:hover": { borderColor: "primary.main", boxShadow: 4 },
+    }}
+  >
     {/* Image */}
-    <div className="relative overflow-hidden bg-gray-100 dark:bg-black/20">
-      <img
-        src={project.image}
+    <Box sx={{ position: "relative", bgcolor: "background.alt", borderBottom: 1, borderColor: "divider" }}>
+      <CardMedia
+        component="img"
+        image={project.image}
         alt={project.title}
-        className="w-full h-56 object-contain group-hover:scale-105 transition-transform duration-500"
+        sx={{ height: 224, objectFit: "contain" }}
       />
-      <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
-
       {project.status && (
-        <div className="absolute top-3 left-3">
-          <Badge variant="solid">{project.status}</Badge>
-        </div>
+        <Chip
+          label={project.status}
+          color="primary"
+          size="small"
+          sx={{ position: "absolute", top: 12, left: 12 }}
+        />
       )}
-
-      <div className="absolute top-3 right-3 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-        {project.githubUrl && (
-          <a
-            href={project.githubUrl}
-            target="_blank"
-            rel="noreferrer"
-            className="p-2 bg-black/60 backdrop-blur-sm rounded-full text-white hover:bg-indigo-600/80 transition-colors"
-          >
-            <Github size={15} />
-          </a>
-        )}
-        {project.liveUrl && (
-          <a
-            href={project.liveUrl}
-            target="_blank"
-            rel="noreferrer"
-            className="p-2 bg-black/60 backdrop-blur-sm rounded-full text-white hover:bg-indigo-600/80 transition-colors"
-          >
-            <ExternalLink size={15} />
-          </a>
-        )}
-      </div>
-    </div>
+    </Box>
 
     {/* Content */}
-    <div className="p-6 flex flex-col flex-1">
-      <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2 leading-snug">
+    <CardContent sx={{ p: 3, display: "flex", flexDirection: "column", flex: 1, "&:last-child": { pb: 3 } }}>
+      <Typography variant="h6" component="h3" sx={{ mb: 1, lineHeight: 1.35 }}>
         {project.title}
-      </h3>
-      <p className="text-gray-600 dark:text-gray-400 text-sm mb-4 leading-relaxed flex-1">
+      </Typography>
+      <Typography variant="body2" sx={{ color: "text.secondary", mb: 2, lineHeight: 1.7, flex: 1 }}>
         {project.description}
-      </p>
+      </Typography>
 
-      <div className="flex flex-wrap gap-1.5 mb-5">
+      <Stack direction="row" useFlexGap spacing={0.75} sx={{ flexWrap: "wrap", mb: 2.5 }}>
         {project.technologies.map((tech) => (
-          <Badge key={tech}>{tech}</Badge>
+          <Chip key={tech} label={tech} size="small" variant="outlined" />
         ))}
-      </div>
+      </Stack>
 
-      <div className="flex flex-wrap gap-3">
+      <Stack direction="row" useFlexGap spacing={1.5} sx={{ flexWrap: "wrap" }}>
         {project.liveUrl && (
-          <a
+          <Button
+            variant="contained"
+            component="a"
             href={project.liveUrl}
             target="_blank"
             rel="noreferrer"
-            className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-indigo-600 to-cyan-600 text-white rounded-lg text-sm font-medium hover:opacity-90 transition-opacity shadow-lg shadow-indigo-500/20"
+            startIcon={<PlayArrowIcon />}
           >
-            <Play size={14} />
             Live Demo
-          </a>
+          </Button>
         )}
         {project.githubUrl && (
-          <a
+          <Button
+            variant="outlined"
+            component="a"
             href={project.githubUrl}
             target="_blank"
             rel="noreferrer"
-            className="flex items-center gap-2 px-4 py-2 glass text-gray-700 dark:text-gray-300 rounded-lg text-sm font-medium hover:border-gray-900/25 dark:hover:border-white/30 hover:text-gray-900 dark:hover:text-white transition-all"
+            startIcon={<GitHubIcon />}
           >
-            <Github size={14} />
             Source Code
-          </a>
+          </Button>
         )}
-      </div>
-    </div>
-  </article>
+      </Stack>
+    </CardContent>
+  </Card>
 );
 
 export default ProjectCard;

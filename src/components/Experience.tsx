@@ -1,5 +1,13 @@
 import { useState } from "react";
-import { GraduationCap } from "lucide-react";
+import Avatar from "@mui/material/Avatar";
+import Box from "@mui/material/Box";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import Container from "@mui/material/Container";
+import Divider from "@mui/material/Divider";
+import Stack from "@mui/material/Stack";
+import Typography from "@mui/material/Typography";
+import SchoolOutlinedIcon from "@mui/icons-material/SchoolOutlined";
 import ExperienceCard from "./ui/ExperienceCard";
 import type { Experience } from "./ui/ExperienceCard";
 import ImageModal from "./ui/ImageModal";
@@ -93,22 +101,32 @@ const ExperienceSection = () => {
     selectedExperience !== null ? experiences[selectedExperience] : null;
 
   return (
-    <section id="experience" className="section-dark">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <Box id="experience" component="section" sx={{ py: 12, bgcolor: "background.default" }}>
+      <Container maxWidth="lg">
         <SectionHeader
           title="Work Experience"
           description="Full-stack, AI, and SaaS roles across four companies — shipping real products from day one."
         />
 
         {/* Timeline */}
-        <div className="relative">
+        <Box sx={{ position: "relative" }}>
           {/* Vertical line */}
-          <div className="absolute left-4 md:left-1/2 transform md:-translate-x-px top-0 bottom-0 w-px bg-gradient-to-b from-indigo-500/50 via-cyan-500/50 to-transparent" />
+          <Box
+            sx={{
+              position: "absolute",
+              left: { xs: 16, md: "50%" },
+              top: 0,
+              bottom: 0,
+              width: 2,
+              transform: "translateX(-50%)",
+              bgcolor: "divider",
+            }}
+          />
 
-          <div className="space-y-10">
+          <Stack spacing={5}>
             {experiences.map((experience, index) => (
               <ExperienceCard
-                key={experience.title}
+                key={experience.title + experience.company}
                 experience={experience}
                 index={index}
                 onOpen={() => {
@@ -117,32 +135,40 @@ const ExperienceSection = () => {
                 }}
               />
             ))}
-          </div>
-        </div>
+          </Stack>
+        </Box>
 
         {/* Education */}
-        <div className="mt-20 pt-16 border-t border-gray-900/10 dark:border-white/[0.06]">
-          <div className="flex items-center justify-center gap-3 mb-10">
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-indigo-500 to-cyan-500 flex items-center justify-center">
-              <GraduationCap size={16} className="text-white" />
-            </div>
-            <h3 className="text-2xl font-bold text-gray-900 dark:text-white">Education</h3>
-          </div>
+        <Divider sx={{ mt: 10, mb: 8 }} />
+        <Stack direction="row" spacing={1.5} sx={{ alignItems: "center", justifyContent: "center", mb: 5 }}>
+          <Avatar
+            variant="rounded"
+            sx={{ width: 32, height: 32, bgcolor: "primary.main", color: "primary.contrastText" }}
+          >
+            <SchoolOutlinedIcon sx={{ fontSize: 18 }} />
+          </Avatar>
+          <Typography variant="h5" component="h3">
+            Education
+          </Typography>
+        </Stack>
 
-          <div className="glass rounded-2xl p-8 max-w-2xl mx-auto hover:border-indigo-500/25 transition-colors">
-            <h4 className="text-lg font-bold text-gray-900 dark:text-white mb-1">
+        <Card sx={{ maxWidth: 672, mx: "auto" }}>
+          <CardContent sx={{ p: 4, "&:last-child": { pb: 4 } }}>
+            <Typography variant="h6" component="h4" sx={{ fontSize: "1.125rem", mb: 0.5 }}>
               ICT Engineering Degree
-            </h4>
-            <p className="text-indigo-600 dark:text-indigo-400 font-medium text-sm mb-1">
+            </Typography>
+            <Typography variant="body2" sx={{ color: "primary.main", fontWeight: 600, mb: 0.5 }}>
               National School of Electronics and Telecommunications of Sfax (ENET'Com)
-            </p>
-            <p className="text-gray-500 dark:text-gray-500 text-sm mb-4">2023 – 2026</p>
-            <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
+            </Typography>
+            <Typography variant="body2" sx={{ color: "text.secondary", mb: 2 }}>
+              2023 – 2026
+            </Typography>
+            <Typography variant="body2" sx={{ color: "text.secondary", lineHeight: 1.7 }}>
               ICT Engineer specializing in full-stack development, cloud computing, AI, networking, and system design. Experienced in building scalable web applications and delivering real-world solutions through academic and professional projects.
-            </p>
-          </div>
-        </div>
-      </div>
+            </Typography>
+          </CardContent>
+        </Card>
+      </Container>
 
       {/* Image Modal */}
       {selectedData && selectedData.images.length > 0 && (
@@ -167,7 +193,7 @@ const ExperienceSection = () => {
           onSelect={(index) => setCurrentImageIndex(index)}
         />
       )}
-    </section>
+    </Box>
   );
 };
 

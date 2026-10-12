@@ -1,28 +1,29 @@
 import { ReactNode } from "react";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
 
 type SectionHeaderProps = {
   id?: string;
   title: string;
   description: string;
   children?: ReactNode;
-  className?: string;
 };
 
-const SectionHeader = ({
-  id,
-  title,
-  description,
-  children,
-  className = "",
-}: SectionHeaderProps) => (
-  <div id={id} className={`text-center mb-16 ${className}`}>
-    <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 dark:text-white mb-4">{title}</h2>
-    <div className="w-16 h-0.5 bg-gradient-to-r from-indigo-500 to-cyan-500 mx-auto mb-6 rounded-full" />
-    <p className="text-gray-600 dark:text-gray-400 text-lg max-w-3xl mx-auto leading-relaxed">
+const SectionHeader = ({ id, title, description, children }: SectionHeaderProps) => (
+  <Box id={id} sx={{ textAlign: "center", mb: 8 }}>
+    <Typography variant="h2" sx={{ fontSize: { xs: "2.25rem", sm: "3rem" }, mb: 2 }}>
+      {title}
+    </Typography>
+    <Box
+      sx={{ width: 64, height: 3, bgcolor: "primary.main", mx: "auto", mb: 3, borderRadius: 999 }}
+    />
+    <Typography
+      sx={{ color: "text.secondary", fontSize: "1.125rem", maxWidth: 768, mx: "auto", lineHeight: 1.7 }}
+    >
       {description}
-    </p>
+    </Typography>
     {children}
-  </div>
+  </Box>
 );
 
 export default SectionHeader;

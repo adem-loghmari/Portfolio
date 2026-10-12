@@ -1,3 +1,4 @@
+import Box from '@mui/material/Box';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import About from './components/About';
@@ -7,14 +8,14 @@ import Footer from './components/Footer';
 
 function App() {
   return (
-    <div className="min-h-screen bg-white dark:bg-gray-950 text-gray-900 dark:text-white">
+    <Box sx={{ minHeight: '100vh', bgcolor: 'background.default', color: 'text.primary' }}>
       <Header />
       <Hero />
       <About />
       <Experience />
       <Projects />
       <Footer />
-    </div>
+    </Box>
   );
 }
 

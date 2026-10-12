@@ -1,4 +1,14 @@
-import { ChevronLeft, ChevronRight, X } from "lucide-react";
+import Box from "@mui/material/Box";
+import Chip from "@mui/material/Chip";
+import Dialog from "@mui/material/Dialog";
+import DialogContent from "@mui/material/DialogContent";
+import DialogTitle from "@mui/material/DialogTitle";
+import IconButton from "@mui/material/IconButton";
+import Stack from "@mui/material/Stack";
+import Typography from "@mui/material/Typography";
+import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
+import ChevronRightIcon from "@mui/icons-material/ChevronRight";
+import CloseIcon from "@mui/icons-material/Close";
 
 type ImageModalProps = {
   title: string;
@@ -13,6 +23,16 @@ type ImageModalProps = {
   onSelect: (index: number) => void;
 };
 
+const arrowSx = {
+  position: "absolute",
+  top: "50%",
+  transform: "translateY(-50%)",
+  bgcolor: "background.paper",
+  border: 1,
+  borderColor: "divider",
+  "&:hover": { bgcolor: "background.alt" },
+} as const;
+
 const ImageModal = ({
   title,
   description,
@@ -25,107 +45,105 @@ const ImageModal = ({
   onNext,
   onSelect,
 }: ImageModalProps) => (
-  <div
-    className="fixed inset-0 bg-gray-900/40 dark:bg-black/75 backdrop-blur-md z-50 flex items-center justify-center p-4"
-    onClick={onClose}
-  >
-    <div
-      className="glass rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-auto relative"
-      onClick={(e) => e.stopPropagation()}
-    >
-      {/* Close button */}
-      <button
-        type="button"
+  <Dialog open onClose={onClose} maxWidth="md" fullWidth scroll="paper">
+    <DialogTitle sx={{ pr: 8, fontWeight: 700, fontSize: "1.5rem" }}>
+      {title}
+      <IconButton
         onClick={onClose}
-        className="absolute top-4 right-4 z-10 p-2 glass rounded-full text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white hover:bg-gray-900/5 dark:hover:bg-white/10 transition-all"
+        aria-label="Close"
+        sx={{ position: "absolute", top: 12, right: 12 }}
       >
-        <X size={18} />
-      </button>
+        <CloseIcon />
+      </IconButton>
+    </DialogTitle>
 
-      <div className="p-8">
-        <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 pr-12">{title}</h2>
+    <DialogContent>
+      {/* Image carousel */}
+      <Box
+        sx={{
+          position: "relative",
+          bgcolor: "background.alt",
+          borderRadius: 2,
+          overflow: "hidden",
+          border: 1,
+          borderColor: "divider",
+          mb: 2.5,
+        }}
+      >
+        <Box
+          component="img"
+          src={images[currentIndex]}
+          alt={`${title} screenshot ${currentIndex + 1}`}
+          sx={{ display: "block", width: "100%", height: "auto" }}
+        />
 
-        {/* Image carousel */}
-        <div className="relative bg-gray-100 dark:bg-black/30 rounded-xl overflow-hidden mb-5 border border-gray-900/10 dark:border-white/[0.06]">
-          <img
-            src={images[currentIndex]}
-            alt={`${title} screenshot ${currentIndex + 1}`}
-            className="w-full h-auto"
-          />
-
-          {images.length > 1 && (
-            <>
-              <button
-                type="button"
-                onClick={onPrev}
-                className="absolute left-3 top-1/2 -translate-y-1/2 p-2 glass rounded-full text-gray-900 dark:text-white hover:bg-gray-900/5 dark:hover:bg-white/10 transition-all"
-              >
-                <ChevronLeft size={20} />
-              </button>
-              <button
-                type="button"
-                onClick={onNext}
-                className="absolute right-3 top-1/2 -translate-y-1/2 p-2 glass rounded-full text-gray-900 dark:text-white hover:bg-gray-900/5 dark:hover:bg-white/10 transition-all"
-              >
-                <ChevronRight size={20} />
-              </button>
-            </>
-          )}
-        </div>
-
-        {/* Dot navigation */}
         {images.length > 1 && (
-          <div className="flex justify-center gap-2 mb-6">
-            {images.map((_, i) => (
-              <button
-                key={i}
-                type="button"
-                onClick={() => onSelect(i)}
-                className={`rounded-full transition-all ${
-                  i === currentIndex
-                    ? "w-5 h-2 bg-indigo-500 dark:bg-indigo-400"
-                    : "w-2 h-2 bg-gray-900/20 hover:bg-gray-900/40 dark:bg-white/20 dark:hover:bg-white/40"
-                }`}
-              />
-            ))}
-          </div>
+          <>
+            <IconButton onClick={onPrev} aria-label="Previous screenshot" sx={{ ...arrowSx, left: 12 }}>
+              <ChevronLeftIcon />
+            </IconButton>
+            <IconButton onClick={onNext} aria-label="Next screenshot" sx={{ ...arrowSx, right: 12 }}>
+              <ChevronRightIcon />
+            </IconButton>
+          </>
         )}
+      </Box>
 
-        <p className="text-gray-600 dark:text-gray-400 text-sm mb-6 leading-relaxed">{description}</p>
+      {/* Dot navigation */}
+      {images.length > 1 && (
+        <Stack direction="row" spacing={1} sx={{ justifyContent: "center", mb: 3 }}>
+          {images.map((_, i) => (
+            <Box
+              key={i}
+              component="button"
+              type="button"
+              aria-label={`Show screenshot ${i + 1}`}
+              onClick={() => onSelect(i)}
+              sx={{
+                p: 0,
+                border: 0,
+                cursor: "pointer",
+                height: 8,
+                width: i === currentIndex ? 20 : 8,
+                borderRadius: 999,
+                bgcolor: i === currentIndex ? "primary.main" : "divider",
+                transition: "width 0.2s, background-color 0.2s",
+              }}
+            />
+          ))}
+        </Stack>
+      )}
 
-        {/* Achievements */}
-        <div className="mb-6">
-          <h4 className="font-semibold text-gray-900 dark:text-white mb-3 text-sm">Key Achievements</h4>
-          <ul className="space-y-2">
-            {achievements.map((item, i) => (
-              <li key={i} className="flex items-start gap-2 text-sm text-gray-600 dark:text-gray-400">
-                <ChevronRight
-                  size={13}
-                  className="text-indigo-500 dark:text-indigo-400 mt-0.5 flex-shrink-0"
-                />
-                {item}
-              </li>
-            ))}
-          </ul>
-        </div>
+      <Typography variant="body2" sx={{ color: "text.secondary", lineHeight: 1.7, mb: 3 }}>
+        {description}
+      </Typography>
 
-        {/* Technologies */}
-        <div>
-          <h4 className="font-semibold text-gray-900 dark:text-white mb-3 text-sm">Technologies</h4>
-          <div className="flex flex-wrap gap-1.5">
-            {technologies.map((tech) => (
-              <span
-                key={tech}
-                className="px-2.5 py-1 text-xs text-gray-600 dark:text-gray-400 bg-gray-900/[0.04] dark:bg-white/[0.05] rounded-full border border-gray-900/10 dark:border-white/[0.08]"
-              >
-                {tech}
-              </span>
-            ))}
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+      {/* Achievements */}
+      <Typography variant="subtitle2" sx={{ fontWeight: 600, mb: 1.5 }}>
+        Key Achievements
+      </Typography>
+      <Stack component="ul" spacing={1} sx={{ listStyle: "none", p: 0, m: 0, mb: 3 }}>
+        {achievements.map((item, i) => (
+          <Stack key={i} component="li" direction="row" spacing={0.75} sx={{ alignItems: "flex-start" }}>
+            <ChevronRightIcon sx={{ fontSize: 16, color: "primary.main", mt: "2px", flexShrink: 0 }} />
+            <Typography variant="body2" sx={{ color: "text.secondary" }}>
+              {item}
+            </Typography>
+          </Stack>
+        ))}
+      </Stack>
+
+      {/* Technologies */}
+      <Typography variant="subtitle2" sx={{ fontWeight: 600, mb: 1.5 }}>
+        Technologies
+      </Typography>
+      <Stack direction="row" useFlexGap spacing={0.75} sx={{ flexWrap: "wrap" }}>
+        {technologies.map((tech) => (
+          <Chip key={tech} label={tech} size="small" variant="outlined" />
+        ))}
+      </Stack>
+    </DialogContent>
+  </Dialog>
 );
 
 export default ImageModal;

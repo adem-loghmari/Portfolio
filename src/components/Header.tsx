@@ -1,139 +1,168 @@
-import { useState, useEffect } from "react";
-import { Menu, X, Code2, User, Briefcase, Mail, FolderOpen, Sun, Moon } from "lucide-react";
+import { useState } from "react";
+import AppBar from "@mui/material/AppBar";
+import Avatar from "@mui/material/Avatar";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import Container from "@mui/material/Container";
+import Drawer from "@mui/material/Drawer";
+import IconButton from "@mui/material/IconButton";
+import List from "@mui/material/List";
+import ListItemButton from "@mui/material/ListItemButton";
+import ListItemIcon from "@mui/material/ListItemIcon";
+import ListItemText from "@mui/material/ListItemText";
+import Stack from "@mui/material/Stack";
+import Toolbar from "@mui/material/Toolbar";
+import Typography from "@mui/material/Typography";
+import useScrollTrigger from "@mui/material/useScrollTrigger";
+import { useColorScheme } from "@mui/material/styles";
+import CodeIcon from "@mui/icons-material/Code";
+import PersonOutlineIcon from "@mui/icons-material/PersonOutlined";
+import WorkOutlineIcon from "@mui/icons-material/WorkOutlineOutlined";
+import MailOutlineIcon from "@mui/icons-material/MailOutlined";
+import FolderOpenIcon from "@mui/icons-material/FolderOpen";
+import LightModeOutlinedIcon from "@mui/icons-material/LightModeOutlined";
+import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
+import MenuIcon from "@mui/icons-material/Menu";
+import CloseIcon from "@mui/icons-material/Close";
 import { scrollToSection } from "../lib/scroll";
-import { useTheme } from "../lib/theme";
 
 const navItems = [
-  { id: "about", label: "About", icon: User },
-  { id: "projects", label: "Projects", icon: FolderOpen },
-  { id: "experience", label: "Experience", icon: Briefcase },
-  { id: "contact", label: "Contact", icon: Mail },
+  { id: "about", label: "About", icon: PersonOutlineIcon },
+  { id: "projects", label: "Projects", icon: FolderOpenIcon },
+  { id: "experience", label: "Experience", icon: WorkOutlineIcon },
+  { id: "contact", label: "Contact", icon: MailOutlineIcon },
 ];
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
-  const { theme, toggle } = useTheme();
+  const isScrolled = useScrollTrigger({ disableHysteresis: true, threshold: 40 });
+  const { mode, setMode } = useColorScheme();
 
-  useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 40);
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  const toggle = () => setMode(mode === "dark" ? "light" : "dark");
+
+  const themeToggle = (
+    <IconButton onClick={toggle} aria-label="Toggle color theme" color="inherit">
+      {mode === "dark" ? (
+        <LightModeOutlinedIcon fontSize="small" />
+      ) : (
+        <DarkModeOutlinedIcon fontSize="small" />
+      )}
+    </IconButton>
+  );
 
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        isScrolled
-          ? "bg-white/80 dark:bg-gray-950/80 backdrop-blur-xl border-b border-gray-900/10 dark:border-white/[0.06] shadow-lg shadow-gray-900/5 dark:shadow-2xl dark:shadow-black/20"
-          : "bg-transparent"
-      }`}
+    <AppBar
+      position="fixed"
+      color="transparent"
+      elevation={isScrolled ? 2 : 0}
+      sx={{
+        bgcolor: "background.default",
+        backgroundImage: "none",
+        color: "text.primary",
+        borderBottom: 1,
+        borderColor: isScrolled ? "divider" : "transparent",
+      }}
     >
-      <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
+      <Container maxWidth="lg">
+        <Toolbar disableGutters sx={{ justifyContent: "space-between", minHeight: 64 }}>
           {/* Logo */}
-          <div className="flex items-center gap-2.5">
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-indigo-500 to-cyan-500 flex items-center justify-center shadow-lg shadow-indigo-500/25">
-              <Code2 size={16} className="text-white" />
-            </div>
-            <span className="font-bold text-gray-900 dark:text-white text-sm tracking-tight">
+          <Stack direction="row" spacing={1.25} sx={{ alignItems: "center" }}>
+            <Avatar
+              variant="rounded"
+              sx={{ width: 32, height: 32, bgcolor: "primary.main", color: "primary.contrastText" }}
+            >
+              <CodeIcon sx={{ fontSize: 18 }} />
+            </Avatar>
+            <Typography variant="subtitle2" sx={{ fontWeight: 700 }}>
               Adam Loghmari
-            </span>
-          </div>
+            </Typography>
+          </Stack>
 
           {/* Desktop nav */}
-          <div className="hidden md:flex items-center gap-1">
+          <Stack direction="row" spacing={0.5} sx={{ display: { xs: "none", md: "flex" } }}>
             {navItems.map((item) => {
               const Icon = item.icon;
               return (
-                <button
+                <Button
                   key={item.id}
-                  type="button"
                   onClick={() => scrollToSection(item.id)}
-                  className="flex items-center gap-1.5 px-4 py-2 rounded-full text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white hover:bg-gray-900/[0.05] dark:hover:bg-white/[0.06] transition-all duration-200 text-sm font-medium"
+                  startIcon={<Icon sx={{ fontSize: 16 }} />}
+                  sx={{ color: "text.secondary", px: 2, "&:hover": { color: "primary.main" } }}
                 >
-                  <Icon size={13} />
                   {item.label}
-                </button>
+                </Button>
               );
             })}
-          </div>
+          </Stack>
 
           {/* Right side: theme toggle + Hire Me */}
-          <div className="hidden md:flex items-center gap-2">
-            <button
-              type="button"
-              onClick={toggle}
-              className="p-2 rounded-full text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white hover:bg-gray-900/[0.05] dark:hover:bg-white/[0.06] transition-all"
-              aria-label="Toggle color theme"
-            >
-              {theme === "dark" ? <Sun size={16} /> : <Moon size={16} />}
-            </button>
-            <button
-              type="button"
-              onClick={() => scrollToSection("contact")}
-              className="px-5 py-2 bg-gradient-to-r from-indigo-600 to-cyan-600 text-white rounded-full text-sm font-semibold hover:opacity-90 transition-opacity shadow-lg shadow-indigo-500/25"
-            >
+          <Stack
+            direction="row"
+            spacing={1}
+            sx={{ display: { xs: "none", md: "flex" }, alignItems: "center" }}
+          >
+            {themeToggle}
+            <Button variant="contained" onClick={() => scrollToSection("contact")} sx={{ px: 2.5 }}>
               Hire Me
-            </button>
-          </div>
+            </Button>
+          </Stack>
 
           {/* Mobile controls */}
-          <div className="md:hidden flex items-center gap-1">
-            <button
-              type="button"
-              onClick={toggle}
-              className="p-2 text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition-colors"
-              aria-label="Toggle color theme"
-            >
-              {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
-            </button>
-            <button
+          <Box sx={{ display: { xs: "flex", md: "none" }, alignItems: "center" }}>
+            {themeToggle}
+            <IconButton
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="p-2 text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition-colors"
               aria-label="Toggle menu"
+              color="inherit"
             >
-              {isMenuOpen ? <X size={20} /> : <Menu size={20} />}
-            </button>
-          </div>
-        </div>
+              {isMenuOpen ? <CloseIcon /> : <MenuIcon />}
+            </IconButton>
+          </Box>
+        </Toolbar>
+      </Container>
 
-        {/* Mobile menu */}
-        {isMenuOpen && (
-          <div className="md:hidden glass border-t border-gray-900/10 dark:border-white/[0.06]">
-            <div className="px-2 py-3 space-y-1">
-              {navItems.map((item) => {
-                const Icon = item.icon;
-                return (
-                  <button
-                    key={item.id}
-                    type="button"
-                    onClick={() => {
-                      scrollToSection(item.id);
-                      setIsMenuOpen(false);
-                    }}
-                    className="flex items-center gap-3 w-full px-4 py-3 text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white hover:bg-gray-900/[0.05] dark:hover:bg-white/[0.06] rounded-xl transition-all text-sm font-medium"
-                  >
-                    <Icon size={15} />
-                    {item.label}
-                  </button>
-                );
-              })}
-              <button
-                type="button"
-                onClick={() => {
-                  scrollToSection("contact");
-                  setIsMenuOpen(false);
-                }}
-                className="w-full mt-2 px-4 py-3 bg-gradient-to-r from-indigo-600 to-cyan-600 text-white rounded-xl text-sm font-semibold"
-              >
-                Hire Me
-              </button>
-            </div>
-          </div>
-        )}
-      </nav>
-    </header>
+      {/* Mobile menu */}
+      <Drawer
+        anchor="top"
+        open={isMenuOpen}
+        onClose={() => setIsMenuOpen(false)}
+        sx={{ display: { md: "none" }, zIndex: (theme) => theme.zIndex.appBar - 1 }}
+      >
+        <Box sx={{ pt: 9, pb: 2, px: 2 }}>
+          <List disablePadding>
+            {navItems.map((item) => {
+              const Icon = item.icon;
+              return (
+                <ListItemButton
+                  key={item.id}
+                  onClick={() => {
+                    scrollToSection(item.id);
+                    setIsMenuOpen(false);
+                  }}
+                  sx={{ borderRadius: 2 }}
+                >
+                  <ListItemIcon sx={{ minWidth: 36 }}>
+                    <Icon fontSize="small" />
+                  </ListItemIcon>
+                  <ListItemText primary={item.label} />
+                </ListItemButton>
+              );
+            })}
+          </List>
+          <Button
+            fullWidth
+            variant="contained"
+            onClick={() => {
+              scrollToSection("contact");
+              setIsMenuOpen(false);
+            }}
+            sx={{ mt: 1.5, py: 1.25 }}
+          >
+            Hire Me
+          </Button>
+        </Box>
+      </Drawer>
+    </AppBar>
   );
 };
 

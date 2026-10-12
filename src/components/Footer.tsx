@@ -1,89 +1,98 @@
-import { Code2, ArrowUp, Github, Linkedin, Mail } from "lucide-react";
+import Avatar from "@mui/material/Avatar";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import Container from "@mui/material/Container";
+import Divider from "@mui/material/Divider";
+import IconButton from "@mui/material/IconButton";
+import Stack from "@mui/material/Stack";
+import Typography from "@mui/material/Typography";
+import CodeIcon from "@mui/icons-material/Code";
+import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
+import GitHubIcon from "@mui/icons-material/GitHub";
+import LinkedInIcon from "@mui/icons-material/LinkedIn";
+import MailOutlineIcon from "@mui/icons-material/MailOutlined";
+import { scrollToSection } from "../lib/scroll";
+
+const socials = [
+  { label: "GitHub", href: "https://github.com/adem-loghmari", icon: GitHubIcon, external: true },
+  {
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/in/adam-hmida-loghmari-8756b22b1/",
+    icon: LinkedInIcon,
+    external: true,
+  },
+  { label: "Email", href: "mailto:hmidaloghmariadam@gmail.com", icon: MailOutlineIcon, external: false },
+];
+
+const borderColor = "rgba(255, 255, 255, 0.24)";
 
 const Footer = () => {
   const scrollToTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
 
   return (
-    <footer id="contact" className="bg-slate-100 dark:bg-[#020208] border-t border-gray-900/10 dark:border-white/[0.05]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center">
+    <Box id="contact" component="footer" sx={{ bgcolor: "background.footer", color: "#fff" }}>
+      <Container maxWidth="lg" sx={{ py: 8, textAlign: "center" }}>
         {/* Logo */}
-        <div className="flex items-center justify-center gap-2.5 mb-4">
-          <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-indigo-500 to-cyan-500 flex items-center justify-center shadow-lg shadow-indigo-500/20">
-            <Code2 size={15} className="text-white" />
-          </div>
-          <span className="font-bold text-gray-900 dark:text-white">Adam Hmida Loghmari</span>
-        </div>
+        <Stack direction="row" spacing={1.25} sx={{ alignItems: "center", justifyContent: "center", mb: 2 }}>
+          <Avatar variant="rounded" sx={{ width: 32, height: 32, bgcolor: "#fff", color: "#0d47a1" }}>
+            <CodeIcon sx={{ fontSize: 18 }} />
+          </Avatar>
+          <Typography sx={{ fontWeight: 700 }}>Adam Hmida Loghmari</Typography>
+        </Stack>
 
-        <p className="text-gray-600 dark:text-gray-500 text-sm max-w-md mx-auto mb-8 leading-relaxed">
+        <Typography variant="body2" sx={{ maxWidth: 448, mx: "auto", mb: 4, lineHeight: 1.7, opacity: 0.85 }}>
           Full-Stack Developer building real products. Open to remote work,
           freelance, and relocation opportunities.
-        </p>
+        </Typography>
 
         {/* Social icons */}
-        <div className="flex justify-center gap-3 mb-10">
-          <a
-            href="https://github.com/adem-loghmari"
-            target="_blank"
-            rel="noreferrer"
-            className="p-2.5 glass rounded-full text-gray-500 hover:text-gray-900 dark:text-gray-500 dark:hover:text-white hover:border-gray-900/20 dark:hover:border-white/20 transition-all"
-            aria-label="GitHub"
-          >
-            <Github size={16} />
-          </a>
-          <a
-            href="https://www.linkedin.com/in/adam-hmida-loghmari-8756b22b1/"
-            target="_blank"
-            rel="noreferrer"
-            className="p-2.5 glass rounded-full text-gray-500 hover:text-gray-900 dark:text-gray-500 dark:hover:text-white hover:border-gray-900/20 dark:hover:border-white/20 transition-all"
-            aria-label="LinkedIn"
-          >
-            <Linkedin size={16} />
-          </a>
-          <a
-            href="mailto:hmidaloghmariadam@gmail.com"
-            className="p-2.5 glass rounded-full text-gray-500 hover:text-gray-900 dark:text-gray-500 dark:hover:text-white hover:border-gray-900/20 dark:hover:border-white/20 transition-all"
-            aria-label="Email"
-          >
-            <Mail size={16} />
-          </a>
-        </div>
+        <Stack direction="row" spacing={1.5} sx={{ justifyContent: "center", mb: 5 }}>
+          {socials.map(({ label, href, icon: Icon, external }) => (
+            <IconButton
+              key={label}
+              component="a"
+              href={href}
+              {...(external ? { target: "_blank", rel: "noreferrer" } : {})}
+              aria-label={label}
+              color="inherit"
+              sx={{ border: 1, borderColor }}
+            >
+              <Icon fontSize="small" />
+            </IconButton>
+          ))}
+        </Stack>
 
         {/* Nav links */}
-        <div className="flex justify-center gap-8 mb-10">
+        <Stack direction="row" spacing={2} sx={{ justifyContent: "center", mb: 5 }}>
           {["about", "projects", "experience"].map((id) => (
-            <button
-              key={id}
-              onClick={() =>
-                document.getElementById(id)?.scrollIntoView({ behavior: "smooth" })
-              }
-              className="text-gray-500 hover:text-gray-900 dark:text-gray-500 dark:hover:text-gray-300 text-sm capitalize transition-colors"
-            >
+            <Button key={id} color="inherit" onClick={() => scrollToSection(id)}>
               {id.charAt(0).toUpperCase() + id.slice(1)}
-            </button>
+            </Button>
           ))}
-        </div>
+        </Stack>
 
-        {/* Divider */}
-        <div className="h-px bg-gradient-to-r from-transparent via-gray-900/10 dark:via-white/[0.07] to-transparent mb-8" />
+        <Divider sx={{ borderColor, mb: 4 }} />
 
         {/* Bottom row */}
-        <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
-          <p className="text-gray-500 dark:text-gray-600 text-xs">
+        <Stack
+          direction={{ xs: "column", sm: "row" }}
+          spacing={2}
+          sx={{ justifyContent: "space-between", alignItems: "center" }}
+        >
+          <Typography variant="caption" sx={{ opacity: 0.85 }}>
             © 2026 Adam Hmida Loghmari — All rights reserved
-          </p>
-          <button
+          </Typography>
+          <Button
+            color="inherit"
+            size="small"
             onClick={scrollToTop}
-            className="flex items-center gap-1.5 text-gray-500 hover:text-gray-900 dark:text-gray-600 dark:hover:text-gray-300 text-xs transition-colors group"
+            endIcon={<ArrowUpwardIcon sx={{ fontSize: 14 }} />}
           >
             Back to top
-            <ArrowUp
-              size={12}
-              className="group-hover:-translate-y-1 transition-transform"
-            />
-          </button>
-        </div>
-      </div>
-    </footer>
+          </Button>
+        </Stack>
+      </Container>
+    </Box>
   );
 };
 

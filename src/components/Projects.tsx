@@ -1,3 +1,5 @@
+import Box from "@mui/material/Box";
+import Container from "@mui/material/Container";
 import SectionHeader from "./ui/SectionHeader";
 import ProjectCard from "./ui/ProjectCard";
 import getseatImg from "./assets/getseat.png";
@@ -40,22 +42,22 @@ const projects = [
 ];
 
 const Projects = () => (
-  <section id="projects" className="section-darker">
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  <Box id="projects" component="section" sx={{ py: 12, bgcolor: "background.alt" }}>
+    <Container maxWidth="lg">
       <SectionHeader
         title="Featured Projects"
         description="A selection of projects that showcase full-stack skills — from concept to deployment."
       />
 
-      <div className="grid lg:grid-cols-2 gap-8">
+      <Box sx={{ display: "grid", gridTemplateColumns: { xs: "1fr", lg: "1fr 1fr" }, gap: 4 }}>
         {projects
           .filter((p) => p.featured)
           .map((project) => (
             <ProjectCard key={project.title} project={project} />
           ))}
-      </div>
-    </div>
-  </section>
+      </Box>
+    </Container>
+  </Box>
 );
 
 export default Projects;

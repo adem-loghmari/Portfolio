@@ -1,5 +1,14 @@
-import { Calendar, MapPin, ChevronRight, Image } from "lucide-react";
-import Badge from "./Badge";
+import Box from "@mui/material/Box";
+import Card from "@mui/material/Card";
+import CardActionArea from "@mui/material/CardActionArea";
+import CardContent from "@mui/material/CardContent";
+import Chip from "@mui/material/Chip";
+import Stack from "@mui/material/Stack";
+import Typography from "@mui/material/Typography";
+import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
+import PlaceOutlinedIcon from "@mui/icons-material/PlaceOutlined";
+import ChevronRightIcon from "@mui/icons-material/ChevronRight";
+import ImageOutlinedIcon from "@mui/icons-material/ImageOutlined";
 
 type Experience = {
   title: string;
@@ -20,88 +29,131 @@ type ExperienceCardProps = {
 };
 
 const ExperienceCard = ({ experience, index, onOpen }: ExperienceCardProps) => {
-  const alignment = index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse";
-  const spacing = index % 2 === 0 ? "md:pr-12" : "md:pl-12";
+  const isEven = index % 2 === 0;
+  const hasImages = experience.images.length > 0;
+
+  const content = (
+    <CardContent sx={{ p: 3.5, "&:last-child": { pb: 3.5 } }}>
+      {/* Gallery hint */}
+      {hasImages && (
+        <Stack
+          direction="row"
+          spacing={0.75}
+          sx={{ alignItems: "center", color: "primary.main", mb: 1.5 }}
+        >
+          <ImageOutlinedIcon sx={{ fontSize: 16 }} />
+          <Typography variant="caption" sx={{ fontWeight: 600 }}>
+            {experience.images.length} screenshots
+          </Typography>
+        </Stack>
+      )}
+
+      {/* Header */}
+      <Stack
+        direction={{ xs: "column", sm: "row" }}
+        spacing={1}
+        sx={{ justifyContent: "space-between", alignItems: { sm: "flex-start" }, mb: 2.5 }}
+      >
+        <Box>
+          <Typography variant="h6" component="h3" sx={{ fontSize: "1.125rem", lineHeight: 1.35, mb: 0.5 }}>
+            {experience.title}
+          </Typography>
+          <Stack direction="row" spacing={1} sx={{ alignItems: "center" }}>
+            <Typography variant="body2" sx={{ color: "primary.main", fontWeight: 600 }}>
+              {experience.company}
+            </Typography>
+            <Typography variant="body2" sx={{ color: "text.disabled" }}>
+              ·
+            </Typography>
+            <Typography variant="body2" sx={{ color: "text.secondary" }}>
+              {experience.type}
+            </Typography>
+          </Stack>
+        </Box>
+
+        <Stack spacing={0.5} sx={{ alignItems: { sm: "flex-end" }, color: "text.secondary", flexShrink: 0 }}>
+          <Stack direction="row" spacing={0.5} sx={{ alignItems: "center" }}>
+            <CalendarTodayIcon sx={{ fontSize: 12 }} />
+            <Typography variant="caption">{experience.period}</Typography>
+          </Stack>
+          <Stack direction="row" spacing={0.5} sx={{ alignItems: "center" }}>
+            <PlaceOutlinedIcon sx={{ fontSize: 13 }} />
+            <Typography variant="caption">{experience.location}</Typography>
+          </Stack>
+        </Stack>
+      </Stack>
+
+      {/* Description */}
+      <Typography variant="body2" sx={{ color: "text.secondary", lineHeight: 1.7, mb: 2.5 }}>
+        {experience.description}
+      </Typography>
+
+      {/* Achievements */}
+      <Stack component="ul" spacing={0.75} sx={{ listStyle: "none", p: 0, m: 0, mb: 2.5 }}>
+        {experience.achievements.map((item, i) => (
+          <Stack key={i} component="li" direction="row" spacing={0.75} sx={{ alignItems: "flex-start" }}>
+            <ChevronRightIcon sx={{ fontSize: 16, color: "primary.main", mt: "2px", flexShrink: 0 }} />
+            <Typography variant="body2" sx={{ color: "text.secondary" }}>
+              {item}
+            </Typography>
+          </Stack>
+        ))}
+      </Stack>
+
+      {/* Tech badges */}
+      <Stack direction="row" useFlexGap spacing={0.75} sx={{ flexWrap: "wrap" }}>
+        {experience.technologies.map((tech) => (
+          <Chip key={tech} label={tech} size="small" variant="outlined" color="primary" />
+        ))}
+      </Stack>
+    </CardContent>
+  );
 
   return (
-    <div className={`relative flex items-start ${alignment}`}>
+    <Box
+      sx={{
+        position: "relative",
+        display: "flex",
+        flexDirection: { md: isEven ? "row" : "row-reverse" },
+      }}
+    >
       {/* Timeline dot */}
-      <div className="absolute left-4 md:left-1/2 transform -translate-x-1/2 w-3 h-3 bg-gradient-to-br from-indigo-500 to-cyan-500 rounded-full border-2 border-white dark:border-gray-950 z-10 mt-9 shadow-[0_0_12px_rgba(99,102,241,0.6)]" />
+      <Box
+        sx={{
+          position: "absolute",
+          left: { xs: 16, md: "50%" },
+          top: 36,
+          transform: "translateX(-50%)",
+          width: 14,
+          height: 14,
+          borderRadius: "50%",
+          bgcolor: "primary.main",
+          border: 3,
+          borderColor: "background.default",
+          zIndex: 1,
+        }}
+      />
 
-      <div className={`ml-10 md:ml-0 flex-1 ${spacing}`}>
-        <button
-          type="button"
-          onClick={onOpen}
-          className={`w-full text-left glass rounded-2xl p-7 transition-all duration-300 ${
-            experience.images.length > 0
-              ? "card-hover cursor-pointer"
-              : "hover:border-gray-900/15 dark:hover:border-white/15"
-          }`}
+      <Box
+        sx={{
+          ml: { xs: 5, md: 0 },
+          width: { xs: "auto", md: "50%" },
+          flex: { xs: 1, md: "none" },
+          minWidth: 0,
+          pr: { md: isEven ? 6 : 0 },
+          pl: { md: isEven ? 0 : 6 },
+        }}
+      >
+        <Card
+          sx={{
+            transition: "border-color 0.2s, box-shadow 0.2s",
+            "&:hover": hasImages ? { borderColor: "primary.main", boxShadow: 4 } : undefined,
+          }}
         >
-          {/* Gallery hint */}
-          {experience.images.length > 0 && (
-            <div className="absolute top-4 right-4 flex items-center gap-1.5 text-xs text-indigo-500 dark:text-indigo-400/70 font-medium">
-              <Image size={13} />
-              <span>{experience.images.length} screenshots</span>
-            </div>
-          )}
-
-          {/* Header */}
-          <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-5 pr-20">
-            <div>
-              <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-1 leading-snug">
-                {experience.title}
-              </h3>
-              <div className="flex items-center gap-2 text-sm">
-                <span className="text-indigo-600 dark:text-indigo-400 font-medium">
-                  {experience.company}
-                </span>
-                <span className="text-gray-900/20 dark:text-white/20">·</span>
-                <span className="text-gray-500 dark:text-gray-500">{experience.type}</span>
-              </div>
-            </div>
-
-            <div className="flex flex-col sm:items-end mt-2 sm:mt-0 gap-1">
-              <span className="flex items-center gap-1 text-xs text-gray-500">
-                <Calendar size={11} />
-                {experience.period}
-              </span>
-              <span className="flex items-center gap-1 text-xs text-gray-500">
-                <MapPin size={11} />
-                {experience.location}
-              </span>
-            </div>
-          </div>
-
-          {/* Description */}
-          <p className="text-gray-600 dark:text-gray-400 text-sm mb-5 leading-relaxed">
-            {experience.description}
-          </p>
-
-          {/* Achievements */}
-          <ul className="space-y-1.5 mb-5">
-            {experience.achievements.map((item, i) => (
-              <li key={i} className="flex items-start gap-2 text-sm text-gray-600 dark:text-gray-400">
-                <ChevronRight
-                  size={13}
-                  className="text-indigo-500 dark:text-indigo-400 mt-0.5 flex-shrink-0"
-                />
-                {item}
-              </li>
-            ))}
-          </ul>
-
-          {/* Tech badges */}
-          <div className="flex flex-wrap gap-1.5">
-            {experience.technologies.map((tech) => (
-              <Badge key={tech} variant="outline">
-                {tech}
-              </Badge>
-            ))}
-          </div>
-        </button>
-      </div>
-    </div>
+          {hasImages ? <CardActionArea onClick={onOpen}>{content}</CardActionArea> : content}
+        </Card>
+      </Box>
+    </Box>
   );
 };
 
