@@ -1,7 +1,10 @@
+import { useState } from "react";
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import SectionHeader from "./ui/SectionHeader";
 import ProjectCard from "./ui/ProjectCard";
+import ImageModal from "./ui/ImageModal";
+import { getseatSlides } from "./getseatSlides";
 import getseatImg from "./assets/getseat.png";
 import deliveryaggImg from "./assets/deliveryagg.png";
 import ecommerceImg from "./assets/e-comerce.png";
@@ -41,7 +44,12 @@ const projects = [
   },
 ];
 
-const Projects = () => (
+const Projects = () => {
+  const [galleryOpen, setGalleryOpen] = useState(false);
+  const [index, setIndex] = useState(0);
+  const getseat = projects[0];
+
+  return (
   <Box id="projects" component="section" sx={{ py: 12, bgcolor: "background.alt" }}>
     <Container maxWidth="lg">
       <SectionHeader
@@ -53,11 +61,38 @@ const Projects = () => (
         {projects
           .filter((p) => p.featured)
           .map((project) => (
-            <ProjectCard key={project.title} project={project} />
+            <ProjectCard
+              key={project.title}
+              project={project}
+              onOpenGallery={
+                project === getseat
+                  ? () => {
+                      setIndex(0);
+                      setGalleryOpen(true);
+                    }
+                  : undefined
+              }
+            />
           ))}
       </Box>
     </Container>
+
+    {galleryOpen && (
+      <ImageModal
+        title={getseat.title}
+        description={getseat.description}
+        achievements={[]}
+        technologies={getseat.technologies}
+        images={getseatSlides}
+        currentIndex={index}
+        onClose={() => setGalleryOpen(false)}
+        onPrev={() => setIndex((i) => (i === 0 ? getseatSlides.length - 1 : i - 1))}
+        onNext={() => setIndex((i) => (i === getseatSlides.length - 1 ? 0 : i + 1))}
+        onSelect={setIndex}
+      />
+    )}
   </Box>
-);
+  );
+};
 
 export default Projects;

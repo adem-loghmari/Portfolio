@@ -9,6 +9,7 @@ import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
 import PlaceOutlinedIcon from "@mui/icons-material/PlaceOutlined";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import ImageOutlinedIcon from "@mui/icons-material/ImageOutlined";
+import type { MediaItem } from "./ImageModal";
 
 type Experience = {
   title: string;
@@ -19,7 +20,7 @@ type Experience = {
   description: string;
   achievements: string[];
   technologies: string[];
-  images: string[];
+  images: MediaItem[];
 };
 
 type ExperienceCardProps = {
@@ -43,7 +44,7 @@ const ExperienceCard = ({ experience, index, onOpen }: ExperienceCardProps) => {
         >
           <ImageOutlinedIcon sx={{ fontSize: 16 }} />
           <Typography variant="caption" sx={{ fontWeight: 600 }}>
-            {experience.images.length} screenshots
+            {experience.images.length} slides
           </Typography>
         </Stack>
       )}

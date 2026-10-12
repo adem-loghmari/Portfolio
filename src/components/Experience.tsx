@@ -12,11 +12,7 @@ import ExperienceCard from "./ui/ExperienceCard";
 import type { Experience } from "./ui/ExperienceCard";
 import ImageModal from "./ui/ImageModal";
 import SectionHeader from "./ui/SectionHeader";
-import getseat1 from "./assets/getseat-1.png";
-import getseat2 from "./assets/getseat-2.png";
-import getseat3 from "./assets/getseat-3.png";
-import getseat4 from "./assets/getseat-4.png";
-import getseat5 from "./assets/getseat-5.png";
+import { getseatSlides } from "./getseatSlides";
 import ecommerce1 from "./assets/e-commerce-1.png";
 import ecommerce2 from "./assets/e-commerce-2.png";
 import ecommerce3 from "./assets/e-commerce-3.png";
@@ -38,7 +34,7 @@ const experiences: Experience[] = [
       "Deployed to production through an automated CI/CD pipeline on DirectAdmin",
     ],
     technologies: ["Next.js 16", "React 19", "Konva.js", "Laravel 12", "PHP 8.3", "WebSockets", "MySQL"],
-    images: [getseat1, getseat2, getseat3, getseat4, getseat5],
+    images: getseatSlides,
   },
   {
     title: "Software Engineering Intern",

@@ -2,12 +2,14 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
+import CardActionArea from "@mui/material/CardActionArea";
 import CardMedia from "@mui/material/CardMedia";
 import Chip from "@mui/material/Chip";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
+import SlideshowIcon from "@mui/icons-material/Slideshow";
 
 type Project = {
   title: string;
@@ -22,9 +24,10 @@ type Project = {
 
 type ProjectCardProps = {
   project: Project;
+  onOpenGallery?: () => void;
 };
 
-const ProjectCard = ({ project }: ProjectCardProps) => (
+const ProjectCard = ({ project, onOpenGallery }: ProjectCardProps) => (
   <Card
     component="article"
     sx={{
@@ -35,22 +38,41 @@ const ProjectCard = ({ project }: ProjectCardProps) => (
     }}
   >
     {/* Image */}
-    <Box sx={{ position: "relative", bgcolor: "background.alt", borderBottom: 1, borderColor: "divider" }}>
-      <CardMedia
-        component="img"
-        image={project.image}
-        alt={project.title}
-        sx={{ height: 224, objectFit: "contain" }}
-      />
-      {project.status && (
-        <Chip
-          label={project.status}
-          color="primary"
-          size="small"
-          sx={{ position: "absolute", top: 12, left: 12 }}
-        />
-      )}
-    </Box>
+    {(() => {
+      const media = (
+        <Box sx={{ position: "relative", bgcolor: "background.alt", borderBottom: 1, borderColor: "divider" }}>
+          <CardMedia
+            component="img"
+            image={project.image}
+            alt={project.title}
+            sx={{ height: 224, objectFit: "contain" }}
+          />
+          {project.status && (
+            <Chip
+              label={project.status}
+              color="primary"
+              size="small"
+              sx={{ position: "absolute", top: 12, left: 12 }}
+            />
+          )}
+          {onOpenGallery && (
+            <Chip
+              icon={<SlideshowIcon />}
+              label="View slides"
+              size="small"
+              sx={{ position: "absolute", bottom: 12, right: 12, bgcolor: "background.paper" }}
+            />
+          )}
+        </Box>
+      );
+      return onOpenGallery ? (
+        <CardActionArea onClick={onOpenGallery} aria-label={`View ${project.title} slides`}>
+          {media}
+        </CardActionArea>
+      ) : (
+        media
+      );
+    })()}
 
     {/* Content */}
     <CardContent sx={{ p: 3, display: "flex", flexDirection: "column", flex: 1, "&:last-child": { pb: 3 } }}>

@@ -10,12 +10,22 @@ import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import CloseIcon from "@mui/icons-material/Close";
 
+type Slide = {
+  src: string;
+  kind?: "image" | "video";
+  caption?: string;
+};
+
+type MediaItem = string | Slide;
+
+const toSlide = (item: MediaItem): Slide => (typeof item === "string" ? { src: item } : item);
+
 type ImageModalProps = {
   title: string;
   description: string;
   achievements: string[];
   technologies: string[];
-  images: string[];
+  images: MediaItem[];
   currentIndex: number;
   onClose: () => void;
   onPrev: () => void;
@@ -44,7 +54,9 @@ const ImageModal = ({
   onPrev,
   onNext,
   onSelect,
-}: ImageModalProps) => (
+}: ImageModalProps) => {
+  const slide = toSlide(images[currentIndex]);
+  return (
   <Dialog open onClose={onClose} maxWidth="md" fullWidth scroll="paper">
     <DialogTitle sx={{ pr: 8, fontWeight: 700, fontSize: "1.5rem" }}>
       {title}
@@ -70,12 +82,27 @@ const ImageModal = ({
           mb: 2.5,
         }}
       >
-        <Box
-          component="img"
-          src={images[currentIndex]}
-          alt={`${title} screenshot ${currentIndex + 1}`}
-          sx={{ display: "block", width: "100%", height: "auto" }}
-        />
+        {slide.kind === "video" ? (
+          <Box
+            key={slide.src}
+            component="video"
+            src={slide.src}
+            autoPlay
+            loop
+            muted
+            playsInline
+            controls
+            aria-label={slide.caption ?? `${title} clip ${currentIndex + 1}`}
+            sx={{ display: "block", width: "100%", height: "auto" }}
+          />
+        ) : (
+          <Box
+            component="img"
+            src={slide.src}
+            alt={slide.caption ?? `${title} screenshot ${currentIndex + 1}`}
+            sx={{ display: "block", width: "100%", height: "auto" }}
+          />
+        )}
 
         {images.length > 1 && (
           <>
@@ -88,6 +115,12 @@ const ImageModal = ({
           </>
         )}
       </Box>
+
+      {slide.caption && (
+        <Typography variant="body2" sx={{ textAlign: "center", fontWeight: 600, mb: 2 }}>
+          {slide.caption}
+        </Typography>
+      )}
 
       {/* Dot navigation */}
       {images.length > 1 && (
@@ -119,19 +152,23 @@ const ImageModal = ({
       </Typography>
 
       {/* Achievements */}
-      <Typography variant="subtitle2" sx={{ fontWeight: 600, mb: 1.5 }}>
-        Key Achievements
-      </Typography>
-      <Stack component="ul" spacing={1} sx={{ listStyle: "none", p: 0, m: 0, mb: 3 }}>
-        {achievements.map((item, i) => (
-          <Stack key={i} component="li" direction="row" spacing={0.75} sx={{ alignItems: "flex-start" }}>
-            <ChevronRightIcon sx={{ fontSize: 16, color: "primary.main", mt: "2px", flexShrink: 0 }} />
-            <Typography variant="body2" sx={{ color: "text.secondary" }}>
-              {item}
-            </Typography>
+      {achievements.length > 0 && (
+        <>
+          <Typography variant="subtitle2" sx={{ fontWeight: 600, mb: 1.5 }}>
+            Key Achievements
+          </Typography>
+          <Stack component="ul" spacing={1} sx={{ listStyle: "none", p: 0, m: 0, mb: 3 }}>
+            {achievements.map((item, i) => (
+              <Stack key={i} component="li" direction="row" spacing={0.75} sx={{ alignItems: "flex-start" }}>
+                <ChevronRightIcon sx={{ fontSize: 16, color: "primary.main", mt: "2px", flexShrink: 0 }} />
+                <Typography variant="body2" sx={{ color: "text.secondary" }}>
+                  {item}
+                </Typography>
+              </Stack>
+            ))}
           </Stack>
-        ))}
-      </Stack>
+        </>
+      )}
 
       {/* Technologies */}
       <Typography variant="subtitle2" sx={{ fontWeight: 600, mb: 1.5 }}>
@@ -144,6 +181,8 @@ const ImageModal = ({
       </Stack>
     </DialogContent>
   </Dialog>
-);
+  );
+};
 
+export type { Slide, MediaItem };
 export default ImageModal;
