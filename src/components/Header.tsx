@@ -24,6 +24,7 @@ import LightModeOutlinedIcon from "@mui/icons-material/LightModeOutlined";
 import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
+import { hireMeHref } from "../lib/contact";
 import { scrollToSection } from "../lib/scroll";
 
 const navItems = [
@@ -102,7 +103,7 @@ const Header = () => {
             sx={{ display: { xs: "none", md: "flex" }, alignItems: "center" }}
           >
             {themeToggle}
-            <Button variant="contained" onClick={() => scrollToSection("contact")} sx={{ px: 2.5 }}>
+            <Button variant="contained" component="a" href={hireMeHref} sx={{ px: 2.5 }}>
               Hire Me
             </Button>
           </Stack>
@@ -152,10 +153,9 @@ const Header = () => {
           <Button
             fullWidth
             variant="contained"
-            onClick={() => {
-              scrollToSection("contact");
-              setIsMenuOpen(false);
-            }}
+            component="a"
+            href={hireMeHref}
+            onClick={() => setIsMenuOpen(false)}
             sx={{ mt: 1.5, py: 1.25 }}
           >
             Hire Me
