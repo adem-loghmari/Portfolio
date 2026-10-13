@@ -48,11 +48,11 @@ const projects: FeaturedProject[] = [
     featured: true,
   },
   {
-    title: "SmartShop — E-Commerce Platform",
+    title: "Shopper — E-Commerce Platform",
     description:
-      "Full-featured e-commerce solution with user authentication, cart and checkout flow, product management, and an admin dashboard with analytics. Built with React, Node.js, MongoDB, and JWT authentication; deployed via GitHub Actions.",
+      "Full-featured e-commerce solution with user authentication, cart and checkout flow, product management, and an admin dashboard with order-driven analytics. Built with React, Node.js, MongoDB, and JWT authentication; checked by GitHub Actions CI and deployed on Render.",
     image: ecommerceImg,
-    technologies: ["React", "Node.js", "MongoDB", "Express", "Chart.js", "JWT"],
+    technologies: ["React", "Vite", "Node.js", "Express", "MongoDB", "Chart.js", "JWT"],
     githubUrl: "https://github.com/adem-loghmari/E-commerce",
     liveUrl: "https://smartshop-lqyf.onrender.com",
     featured: true,
