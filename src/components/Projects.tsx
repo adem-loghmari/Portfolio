@@ -4,12 +4,26 @@ import Container from "@mui/material/Container";
 import SectionHeader from "./ui/SectionHeader";
 import ProjectCard from "./ui/ProjectCard";
 import ImageModal from "./ui/ImageModal";
+import type { Slide } from "./ui/ImageModal";
 import { getseatSlides } from "./getseatSlides";
+import { ecommerceSlides } from "./ecommerceSlides";
 import getseatImg from "./assets/getseat.png";
 import deliveryaggImg from "./assets/deliveryagg.png";
-import ecommerceImg from "./assets/e-comerce.png";
+import ecommerceImg from "./assets/ecommerce/store-home.png";
 
-const projects = [
+type FeaturedProject = {
+  title: string;
+  description: string;
+  image: string;
+  technologies: string[];
+  status?: string;
+  githubUrl?: string;
+  liveUrl?: string;
+  featured: boolean;
+  slides?: Slide[];
+};
+
+const projects: FeaturedProject[] = [
   {
     title: "GetSeat — Seat Mapping & Event Ticketing Platform",
     description:
@@ -20,6 +34,7 @@ const projects = [
     githubUrl: "",
     liveUrl: "https://getseat.dev",
     featured: true,
+    slides: getseatSlides,
   },
   {
     title: "DeliveryAgg — B2B Delivery-Management SaaS",
@@ -41,13 +56,14 @@ const projects = [
     githubUrl: "https://github.com/adem-loghmari/E-commerce",
     liveUrl: "https://smartshop-lqyf.onrender.com",
     featured: true,
+    slides: ecommerceSlides,
   },
 ];
 
 const Projects = () => {
-  const [galleryOpen, setGalleryOpen] = useState(false);
+  const [gallery, setGallery] = useState<FeaturedProject | null>(null);
   const [index, setIndex] = useState(0);
-  const getseat = projects[0];
+  const slides = gallery?.slides ?? [];
 
   return (
   <Box id="projects" component="section" sx={{ py: 12, bgcolor: "background.alt" }}>
@@ -65,10 +81,10 @@ const Projects = () => {
               key={project.title}
               project={project}
               onOpenGallery={
-                project === getseat
+                project.slides
                   ? () => {
                       setIndex(0);
-                      setGalleryOpen(true);
+                      setGallery(project);
                     }
                   : undefined
               }
@@ -77,17 +93,17 @@ const Projects = () => {
       </Box>
     </Container>
 
-    {galleryOpen && (
+    {gallery && (
       <ImageModal
-        title={getseat.title}
-        description={getseat.description}
+        title={gallery.title}
+        description={gallery.description}
         achievements={[]}
-        technologies={getseat.technologies}
-        images={getseatSlides}
+        technologies={gallery.technologies}
+        images={slides}
         currentIndex={index}
-        onClose={() => setGalleryOpen(false)}
-        onPrev={() => setIndex((i) => (i === 0 ? getseatSlides.length - 1 : i - 1))}
-        onNext={() => setIndex((i) => (i === getseatSlides.length - 1 ? 0 : i + 1))}
+        onClose={() => setGallery(null)}
+        onPrev={() => setIndex((i) => (i === 0 ? slides.length - 1 : i - 1))}
+        onNext={() => setIndex((i) => (i === slides.length - 1 ? 0 : i + 1))}
         onSelect={setIndex}
       />
     )}
