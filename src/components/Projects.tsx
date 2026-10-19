@@ -32,7 +32,7 @@ const projects: FeaturedProject[] = [
     technologies: ["Next.js 16", "React 19", "Konva.js", "Laravel 12", "WebSockets", "REST API"],
     status: "In Development",
     githubUrl: "",
-    liveUrl: "https://getseat.dev",
+    liveUrl: "https://getseat.app",
     featured: true,
     slides: getseatSlides,
   },
