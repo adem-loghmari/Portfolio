@@ -2,7 +2,6 @@ import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Container from "@mui/material/Container";
-import Divider from "@mui/material/Divider";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import CodeIcon from "@mui/icons-material/Code";
@@ -40,7 +39,7 @@ const About = () => (
     <Container maxWidth="lg">
       <SectionHeader
         title="About Me"
-        description="Full-stack developer building real products — not just side projects. I ship production SaaS end to end and I'm actively looking for remote roles."
+        description="I like owning a product from the first schema to the production deploy. Here is how I got here and what I work with."
       />
 
       <Box
@@ -56,46 +55,26 @@ const About = () => (
           <CardContent sx={{ p: 4, "&:last-child": { pb: 4 } }}>
             <Stack direction="row" spacing={1.25} sx={{ alignItems: "center", mb: 3 }}>
               <Box sx={{ width: 4, height: 24, bgcolor: "primary.main", borderRadius: 999 }} />
-              <Typography variant="h6">My Journey</Typography>
+              <Typography variant="h6">Background</Typography>
             </Stack>
 
             <Stack spacing={2}>
               <Typography variant="body2" sx={{ color: "text.secondary", lineHeight: 1.7 }}>
-                I discovered coding back in high school — and it clicked instantly.
-                What started as a simple curiosity quickly became a passion for
-                solving complex problems through code.
+                I started programming in high school and finished a full-stack
+                web development course before university.
               </Typography>
               <Typography variant="body2" sx={{ color: "text.secondary", lineHeight: 1.7 }}>
-                After completing a full-stack development course early on, I chose
-                to pursue two years of preparatory engineering school to strengthen
-                my foundations. Those years sharpened my discipline and deepened
-                my technical thinking.
+                I then spent two years in preparatory engineering school (mostly
+                math and physics, very little code) and went on to an ICT
+                engineering degree at ENET'Com Sfax.
               </Typography>
               <Typography variant="body2" sx={{ color: "text.secondary", lineHeight: 1.7 }}>
-                Once I returned to coding, I dove back in with renewed energy. I
-                explored new technologies, built dozens of projects, and embraced a
-                refined approach to writing clean, efficient, and scalable code.
+                Alongside the degree I did three internships (OCR, e-commerce
+                dashboards, a Go backend for an AI content tool), and since
+                February 2026 I have been the engineer behind GetSeat at United
+                Systema.
               </Typography>
             </Stack>
-
-            {/* Quick stats */}
-            <Divider sx={{ mt: 4, mb: 3 }} />
-            <Box sx={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 2 }}>
-              {[
-                { value: "4", label: "Companies" },
-                { value: "10+", label: "Projects" },
-                { value: "Remote", label: "Ready" },
-              ].map((stat) => (
-                <Box key={stat.label} sx={{ textAlign: "center" }}>
-                  <Typography variant="h5" sx={{ color: "primary.main" }}>
-                    {stat.value}
-                  </Typography>
-                  <Typography variant="caption" sx={{ color: "text.secondary" }}>
-                    {stat.label}
-                  </Typography>
-                </Box>
-              ))}
-            </Box>
           </CardContent>
         </Card>
 

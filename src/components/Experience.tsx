@@ -25,13 +25,13 @@ const experiences: Experience[] = [
     period: "Feb 2026 - Present",
     type: "Full-time",
     description:
-      "Built GetSeat from the ground up at an early-stage Qatar startup — a real-time event ticketing and seat-management SaaS with an interactive drag-and-drop venue designer, multi-tenant role-based access, a reservation and ticketing system, and an embeddable iframe SDK for third-party integration.",
+      "I built GetSeat from scratch at an early-stage startup in Qatar. It is an event ticketing and seat-management SaaS: organizers draw their venue in a drag-and-drop editor, sell seats in real time, and partners can embed seat selection on their own sites.",
     achievements: [
-      "Engineered WebSocket seat locking (Laravel Reverb / Pusher) with pessimistic DB locking — 100% prevention of double-booking under concurrent checkout, sub-200 ms lock broadcasts",
-      "Built the canvas seat editor with Konva.js, holding 60 FPS while manipulating 1,000+ interactive shapes via viewport culling and memoization",
-      "Kept the seat-availability API under 100 ms average response and integrated SkipCash payments",
-      "Shipped a documented REST API and embeddable iframe SDK so partners can add seat selection in minutes",
-      "Deployed to production through an automated CI/CD pipeline on DirectAdmin",
+      "Seat locking over WebSockets (Laravel Reverb / Pusher) backed by pessimistic database locks, so two buyers can never check out the same seat. Other clients see a seat lock in under 200 ms",
+      "Canvas venue editor in Konva.js. Viewport culling and memoization keep it smooth with over a thousand seats on screen",
+      "Seat-availability API and SkipCash payment integration",
+      "Documented REST API and an embeddable iframe SDK for partner sites",
+      "Multi-tenant roles and permissions, deployed to production through a CI/CD pipeline on DirectAdmin",
     ],
     technologies: ["Next.js 16", "React 19", "Konva.js", "Laravel 12", "PHP 8.3", "WebSockets", "MySQL"],
     images: getseatSlides,
@@ -45,10 +45,10 @@ const experiences: Experience[] = [
     description:
       "Built and optimized the backend of an AI-powered SaaS platform that automates content creation and publishing to WordPress and Shopify. Contributed to AI pipeline development, CMS integration, and system scalability.",
     achievements: [
-      "Built and optimized backend services in Go (Gin), improving async pipeline throughput and reducing latency",
-      "Integrated WordPress and Shopify via custom REST plugins for hundreds of active users",
-      "Developed AI engines for content and image generation",
-      "Enhanced admin-dashboard features and tuned MongoDB query performance",
+      "Backend services in Go (Gin) for the asynchronous content-generation pipeline",
+      "Custom WordPress and Shopify plugins that publish the generated content to customers' sites",
+      "Content and image generation features",
+      "Admin dashboard features and MongoDB query tuning",
     ],
     technologies: ["Go (Gin)", "TypeScript", "Vue.js", "MongoDB"],
     images: [],
@@ -64,7 +64,7 @@ const experiences: Experience[] = [
     achievements: [
       "Designed and built a responsive admin dashboard with analytics, user management, and order tracking",
       "Developed Node.js/Express REST APIs and a React frontend",
-      "Optimized MongoDB aggregation pipelines and indexing to cut peak query times",
+      "MongoDB aggregation pipelines and indexes for the analytics views",
       "Implemented authentication and role-based access control (JWT)",
     ],
     technologies: ["React", "Node.js", "Express.js", "MongoDB", "JWT"],
@@ -82,7 +82,7 @@ const experiences: Experience[] = [
       "Implemented OCR logic with PyTesseract and pdf2image, with deskew and binarization preprocessing",
       "Developed a REST API using Express.js to serve model outputs",
       "Built a web dashboard for uploading and viewing results",
-      "Cut invoice processing from hours to minutes for internal use",
+      "Turned a manual invoice entry job into an upload-and-review step",
     ],
     technologies: ["Python", "PyTesseract", "pdf2image", "Express.js", "React", "MongoDB"],
     images: [],
@@ -101,7 +101,7 @@ const ExperienceSection = () => {
       <Container maxWidth="lg">
         <SectionHeader
           title="Work Experience"
-          description="Full-stack, AI, and SaaS roles across four companies — shipping real products from day one."
+          description="One full-time role and three internships, newest first."
         />
 
         {/* Timeline */}
@@ -157,10 +157,10 @@ const ExperienceSection = () => {
               National School of Electronics and Telecommunications of Sfax (ENET'Com)
             </Typography>
             <Typography variant="body2" sx={{ color: "text.secondary", mb: 2 }}>
-              2023 – 2026
+              2023 to 2026
             </Typography>
             <Typography variant="body2" sx={{ color: "text.secondary", lineHeight: 1.7 }}>
-              ICT Engineer specializing in full-stack development, cloud computing, AI, networking, and system design. Experienced in building scalable web applications and delivering real-world solutions through academic and professional projects.
+              Coursework across software engineering, networks, cloud and AI.
             </Typography>
           </CardContent>
         </Card>

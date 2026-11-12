@@ -6,7 +6,6 @@ import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
-import CodeIcon from "@mui/icons-material/Code";
 import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
@@ -34,15 +33,15 @@ const Footer = () => {
       <Container maxWidth="lg" sx={{ py: 8, textAlign: "center" }}>
         {/* Logo */}
         <Stack direction="row" spacing={1.25} sx={{ alignItems: "center", justifyContent: "center", mb: 2 }}>
-          <Avatar variant="rounded" sx={{ width: 32, height: 32, bgcolor: "#fff", color: "#0d47a1" }}>
-            <CodeIcon sx={{ fontSize: 18 }} />
+          <Avatar variant="rounded" sx={{ width: 32, height: 32, bgcolor: "#fff", color: "#0d47a1", fontSize: 14, fontWeight: 700 }}>
+            AL
           </Avatar>
           <Typography sx={{ fontWeight: 700 }}>Adam Hmida Loghmari</Typography>
         </Stack>
 
         <Typography variant="body2" sx={{ maxWidth: 448, mx: "auto", mb: 4, lineHeight: 1.7, opacity: 0.85 }}>
-          Full-Stack Developer building real products. Open to remote work,
-          freelance, and relocation opportunities.
+          Full-stack developer. Open to freelance projects, contract work and
+          full-time remote roles. The fastest way to reach me is email.
         </Typography>
 
         {/* Social icons */}
@@ -64,7 +63,7 @@ const Footer = () => {
 
         {/* Nav links */}
         <Stack direction="row" spacing={2} sx={{ justifyContent: "center", mb: 5 }}>
-          {["about", "projects", "experience"].map((id) => (
+          {["about", "experience", "projects"].map((id) => (
             <Button key={id} color="inherit" onClick={() => scrollToSection(id)}>
               {id.charAt(0).toUpperCase() + id.slice(1)}
             </Button>
@@ -80,7 +79,7 @@ const Footer = () => {
           sx={{ justifyContent: "space-between", alignItems: "center" }}
         >
           <Typography variant="caption" sx={{ opacity: 0.85 }}>
-            © 2026 Adam Hmida Loghmari — All rights reserved
+            © 2026 Adam Hmida Loghmari
           </Typography>
           <Button
             color="inherit"

@@ -15,7 +15,6 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import useScrollTrigger from "@mui/material/useScrollTrigger";
 import { useColorScheme } from "@mui/material/styles";
-import CodeIcon from "@mui/icons-material/Code";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutlined";
 import WorkOutlineIcon from "@mui/icons-material/WorkOutlineOutlined";
 import MailOutlineIcon from "@mui/icons-material/MailOutlined";
@@ -29,8 +28,8 @@ import { scrollToSection } from "../lib/scroll";
 
 const navItems = [
   { id: "about", label: "About", icon: PersonOutlineIcon },
-  { id: "projects", label: "Projects", icon: FolderOpenIcon },
   { id: "experience", label: "Experience", icon: WorkOutlineIcon },
+  { id: "projects", label: "Projects", icon: FolderOpenIcon },
   { id: "contact", label: "Contact", icon: MailOutlineIcon },
 ];
 
@@ -70,9 +69,9 @@ const Header = () => {
           <Stack direction="row" spacing={1.25} sx={{ alignItems: "center" }}>
             <Avatar
               variant="rounded"
-              sx={{ width: 32, height: 32, bgcolor: "primary.main", color: "primary.contrastText" }}
+              sx={{ width: 32, height: 32, bgcolor: "primary.main", color: "primary.contrastText", fontSize: 14, fontWeight: 700 }}
             >
-              <CodeIcon sx={{ fontSize: 18 }} />
+              AL
             </Avatar>
             <Typography variant="subtitle2" sx={{ fontWeight: 700 }}>
               Adam Loghmari
@@ -96,7 +95,7 @@ const Header = () => {
             })}
           </Stack>
 
-          {/* Right side: theme toggle + Hire Me */}
+          {/* Right side: theme toggle + email */}
           <Stack
             direction="row"
             spacing={1}
@@ -104,7 +103,7 @@ const Header = () => {
           >
             {themeToggle}
             <Button variant="contained" component="a" href={hireMeHref} sx={{ px: 2.5 }}>
-              Hire Me
+              Email me
             </Button>
           </Stack>
 
@@ -158,7 +157,7 @@ const Header = () => {
             onClick={() => setIsMenuOpen(false)}
             sx={{ mt: 1.5, py: 1.25 }}
           >
-            Hire Me
+            Email me
           </Button>
         </Box>
       </Drawer>

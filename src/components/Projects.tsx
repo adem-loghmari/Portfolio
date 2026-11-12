@@ -25,21 +25,21 @@ type FeaturedProject = {
 
 const projects: FeaturedProject[] = [
   {
-    title: "GetSeat — Seat Mapping & Event Ticketing Platform",
+    title: "GetSeat: seat maps and event ticketing",
     description:
-      "Built from scratch at United Systema. A real-time event platform with an interactive drag-and-drop seat-map editor (Konva.js — 60 FPS while manipulating 1,000+ shapes), WebSocket seat locking that prevents double-booking under concurrent checkout, an event dashboard, a ticketing system, and a fully documented embeddable iframe SDK for third-party integration. Deployed on DirectAdmin via a custom CI/CD pipeline. Public launch June 2026.",
+      "Built from scratch at United Systema and now in production. Organizers draw their venue in a drag-and-drop seat-map editor, then sell tickets while WebSocket seat locks stop two people from buying the same seat. Includes an event dashboard, ticketing, and an embeddable iframe SDK so partners can sell seats on their own sites.",
     image: getseatImg,
     technologies: ["Next.js 16", "React 19", "Konva.js", "Laravel 12", "WebSockets", "REST API"],
-    status: "In Development",
+    status: "Live",
     githubUrl: "",
     liveUrl: "https://getseat.app",
     featured: true,
     slides: getseatSlides,
   },
   {
-    title: "DeliveryAgg — B2B Delivery-Management SaaS",
+    title: "DeliveryAgg: delivery management for courier companies",
     description:
-      "A multi-tenant courier-management platform with separate business and admin portals. Includes an order-lifecycle state machine, bulk CSV order upload, automated monthly invoicing with on-the-fly PDF generation, public order tracking, and role-based access. Built on Next.js 16 (App Router + Server Actions) with an Express 5 + Prisma + PostgreSQL API, JWT auth, and rate limiting.",
+      "A multi-tenant platform where businesses hand orders to a courier and track them. Separate business and admin portals, an order state machine, bulk CSV upload, monthly invoices generated as PDFs, and public tracking links. Next.js 16 front end with an Express 5, Prisma and PostgreSQL API.",
     image: deliveryaggImg,
     technologies: ["Next.js 16", "React 19", "TypeScript", "Express 5", "Prisma", "PostgreSQL", "JWT", "Tailwind CSS"],
     status: "In Development",
@@ -48,9 +48,9 @@ const projects: FeaturedProject[] = [
     featured: true,
   },
   {
-    title: "Shopper — E-Commerce Platform",
+    title: "Shopper: e-commerce store and admin",
     description:
-      "Full-featured e-commerce solution with user authentication, cart and checkout flow, product management, and an admin dashboard with order-driven analytics. Built with React, Node.js, MongoDB, and JWT authentication; checked by GitHub Actions CI and deployed on Render.",
+      "A store with accounts, cart and checkout, plus an admin side for products, orders and sales charts. React and Node.js on MongoDB, with GitHub Actions CI and hosting on Render.",
     image: ecommerceImg,
     technologies: ["React", "Vite", "Node.js", "Express", "MongoDB", "Chart.js", "JWT"],
     githubUrl: "https://github.com/adem-loghmari/E-commerce",
@@ -69,8 +69,8 @@ const Projects = () => {
   <Box id="projects" component="section" sx={{ py: 12, bgcolor: "background.alt" }}>
     <Container maxWidth="lg">
       <SectionHeader
-        title="Featured Projects"
-        description="A selection of projects that showcase full-stack skills — from concept to deployment."
+        title="Projects"
+        description="Things I have built and shipped. Each one has a live version you can click through."
       />
 
       <Box sx={{ display: "grid", gridTemplateColumns: { xs: "1fr", lg: "1fr 1fr" }, gap: 4 }}>

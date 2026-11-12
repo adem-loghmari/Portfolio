@@ -1,15 +1,15 @@
-// Address that "Hire Me" emails. Change it here only.
+// Address that the "Email me" buttons use. Change it here only.
 export const CONTACT_EMAIL = "hmidaloghmariadam@gmail.com";
 
-const subject = "Hiring inquiry from your portfolio";
+const subject = "Project inquiry from your portfolio";
 const body = [
   "Hi Adam,",
   "",
-  "I came across your portfolio and would like to talk about a role.",
+  "I came across your portfolio and would like to talk about a project.",
   "",
   "Company:",
-  "Role:",
-  "Location / remote policy:",
+  "What we need built:",
+  "Timeline:",
   "",
   "Best regards,",
 ].join("\n");

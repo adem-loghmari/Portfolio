@@ -33,7 +33,7 @@ const NotFound = () => (
       </Typography>
       <Stack direction={{ xs: "column", sm: "row" }} spacing={1.5} sx={{ justifyContent: "center" }}>
         <Button variant="contained" size="large" component="a" href={hireMeHref} sx={{ px: 4 }}>
-          Hire Me
+          Email me
         </Button>
         <Button variant="outlined" size="large" component="a" href="/" startIcon={<ArrowBackIcon />} sx={{ px: 4 }}>
           Back to Portfolio
